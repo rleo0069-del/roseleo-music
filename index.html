@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rose Leo — Music</title><meta name="description" content="Music by Rose Leo">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<header class="hero"><h1>Rose Leo</h1>
+<p class="bio">Songs of space, memory, and motion — an evolving catalog of AI-assisted music exploring the cosmos, love, and the future of mind and machine.</p>
+<p class="links"><a href="https://www.youtube.com/@RoseMarieLeo" target="_blank" rel="noopener">YouTube</a> · <a href="https://rleo0069-del.github.io/find-me-here/" target="_blank" rel="noopener">About Rose</a></p></header>
+<main><div class="controls"><input id="search" type="search" placeholder="Search songs…" aria-label="Search songs">
+<div id="tags" class="tags" role="group" aria-label="Filter by tag"></div></div>
+<p id="count" class="count" aria-live="polite"></p><section id="grid" class="grid"></section></main>
+<footer class="foot">© Rose Leo</footer>
+<div id="player" class="player" aria-label="Audio player">
+<div class="np"><img id="pCover" alt="" hidden><div><div id="pTitle" class="pt">Select a song</div><div id="pArtist" class="pa"></div></div></div>
+<div class="pc"><button id="prev" aria-label="Previous">⏮</button><button id="play" class="big" aria-label="Play">▶</button><button id="next" aria-label="Next">⏭</button></div>
+<div class="ps"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek"><span id="dur">0:00</span></div>
+<div class="pv"><input id="vol" type="range" min="0" max="1" step="0.01" value="0.9" aria-label="Volume"><div id="ytWrap" class="yt"><div id="yt"></div></div></div>
+<audio id="audio" preload="none"></audio></div>
+<script src="app.js"></script></body></html>
