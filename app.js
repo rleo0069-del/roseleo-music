@@ -1,10 +1,11 @@
 (()=>{
-const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
 // starfield
 const cv=$('#stars'),cx=cv.getContext('2d');let st=[];
-function rs(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;st=Array.from({length:Math.min(400,innerWidth/3)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4*devicePixelRatio+.2,p:Math.random()*6.28,s:.005+Math.random()*.02,v:.02+Math.random()*.08}))}
-const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function dr(){cx.clearRect(0,0,cv.width,cv.height);for(const s of st){s.p+=s.s;if(!still){s.y+=s.v;if(s.y>cv.height)s.y=0}cx.globalAlpha=.4+.6*Math.abs(Math.sin(s.p));cx.fillStyle='#fff';cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.28);cx.fill()}requestAnimationFrame(dr)}
+function rs(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;st=Array.from({length:Math.min(250,innerWidth/4)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.2*devicePixelRatio+.2,p:Math.random()*6.28,s:.003+Math.random()*.01,v:.01+Math.random()*.04}));if(still)dr()}
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;let raf=0;
+function dr(){raf=0;cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#fff';for(const s of st){if(!still){s.p+=s.s;s.y+=s.v;if(s.y>cv.height)s.y=0}cx.globalAlpha=.3+.5*Math.abs(Math.sin(s.p));cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.28);cx.fill()}if(!still&&!document.hidden)raf=requestAnimationFrame(dr)}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!still&&!raf)raf=requestAnimationFrame(dr)});
 addEventListener('resize',rs);rs();dr();
 // state
 let songs=[],view=[],cur=-1,tag=null,yt=null,ytReady=false,ytTimer;
