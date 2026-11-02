@@ -12,7 +12,7 @@ let songs=[],view=[],cur=-1,tag=null,yt=null,ytReady=false,ytTimer;
 const audio=$('#audio'),fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
 const ytId=u=>{if(!u)return'';const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u)?u:'')};
 const mode=s=>s.audio?'audio':ytId(s.youtube)?'youtube':'link';
-fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 function tagsUI(){const all=[...new Set(songs.flatMap(s=>s.tags))].sort();const w=$('#tags');w.innerHTML='';
  [null,...all].forEach(t=>{const b=document.createElement('button');b.textContent=t||'All';b.setAttribute('aria-pressed',t===tag);b.onclick=()=>{tag=t;tagsUI();render()};w.appendChild(b)})}
 $('#search').addEventListener('input',render);
@@ -20,7 +20,7 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  view=songs.filter(s=>(!tag||s.tags.includes(tag))&&(!q||[s.title,s.artist,s.lyrics,...s.tags].join(' ').toLowerCase().includes(q)));
  $('#count').textContent=view.length+' of '+songs.length+' songs';
  $('#grid').innerHTML=view.map((s,i)=>{const m=mode(s),y=ytId(s.youtube);const img=s.cover||(y?`https://i.ytimg.com/vi/${y}/hqdefault.jpg`:'');
- return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
+ return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
  <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}</div>
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">Listen ↗</a>`:''}
@@ -53,4 +53,16 @@ audio.ontimeupdate=()=>{$('#cur').textContent=fmt(audio.currentTime);$('#dur').t
 $('#seek').oninput=e=>{if(cur<0)return;const f=e.target.value/100;if(mode(songs[cur])==='audio'){if(audio.duration)audio.currentTime=f*audio.duration}else if(ytReady)yt.seekTo(f*yt.getDuration(),true)};
 $('#vol').oninput=e=>{audio.volume=+e.target.value;if(ytReady)yt.setVolume(e.target.value*100)};
 document.addEventListener('keydown',e=>{if(e.code==='Space'&&!/INPUT|BUTTON|A/.test(e.target.tagName)){e.preventDefault();toggle()}});
+
+// top: date + news
+$('#today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+fetch('data/news.json').then(r=>r.json()).then(n=>{$('#news').innerHTML=n.map(x=>`<li>${x.link?`<a href="${esc(x.link)}"${/^https?:/.test(x.link)?' target="_blank" rel="noopener"':''}>${esc(x.text)}</a>`:esc(x.text)}</li>`).join('')}).catch(()=>{$('.news').hidden=true});
+// sidebar
+function sideUI(){$('#sCount').textContent='('+songs.length+')';$('#sList').innerHTML=songs.map((s,i)=>`<li><a href="#song-${esc(s.id)}" data-si="${i}">${esc(s.title)}</a></li>`).join('')}
+$('#sFilter').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();$('#sList').querySelectorAll('li').forEach(li=>li.hidden=q&&!li.textContent.toLowerCase().includes(q))});
+$('#sList').addEventListener('click',e=>{const l=e.target.closest('[data-si]');if(!l)return;e.preventDefault();const i=+l.dataset.si,s=songs[i];
+ if(!view.includes(s)){$('#search').value='';tag=null;tagsUI();render()}
+ if(mode(s)!=='link')load(i,true);const el=document.getElementById('song-'+s.id);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600)}
+ if(matchMedia('(max-width:900px)').matches){$('#sideB').classList.remove('open');$('#sideT').setAttribute('aria-expanded','false')}});
+$('#sideT').onclick=()=>{const o=$('#sideB').classList.toggle('open');$('#sideT').setAttribute('aria-expanded',o)};
 })();
