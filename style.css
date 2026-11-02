@@ -27,3 +27,5 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(max-width:760px){.player{grid-template-columns:1fr auto;padding:10px}.ps{grid-column:1/-1;order:3}.pv{grid-column:1/-1;order:4;justify-content:space-between}body{padding-bottom:190px}}
 
 .extras{margin:72px 0 20px;scroll-margin-top:20px}.extras h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;text-align:center;margin:0;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}.extras .sub{text-align:center;color:var(--mu);margin:6px 0 22px}.xgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}.xcard .row{align-items:center}
+
+.hits b{color:var(--acc2);font-weight:600;text-shadow:0 0 8px var(--acc2)}
