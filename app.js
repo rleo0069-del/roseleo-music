@@ -17,7 +17,7 @@ let songs=[],view=[],cur=-1,tag=null,yt=null,ytReady=false,ytTimer;
 const audio=$('#audio'),fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
 const ytId=u=>{if(!u)return'';const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u)?u:'')};
 const mode=s=>s.audio?'audio':ytId(s.youtube)?'youtube':'link';
-fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI();goHash()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 function tagsUI(){const all=[...new Set(songs.flatMap(s=>s.tags))].sort();const w=$('#tags');w.innerHTML='';
  [null,...all].forEach(t=>{const b=document.createElement('button');b.textContent=t||'All';b.setAttribute('aria-pressed',t===tag);b.onclick=()=>{tag=t;tagsUI();render()};w.appendChild(b)})}
 $('#search').addEventListener('input',render);
@@ -29,7 +29,6 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
  <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}</div>
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">Listen ↗</a>`:''}
- ${s.source&&m!=='link'?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">Source ↗</a>`:''}
  ${s.lyrics?`<button data-ly="${i}" aria-expanded="false">Lyrics</button>`:''}</div>
  ${s.lyrics?`<div class="lyrics" id="ly${i}" hidden>${esc(s.lyrics)}</div>`:''}</div></article>`}).join('')}
 $('#grid').addEventListener('click',e=>{const p=e.target.closest('[data-play]'),l=e.target.closest('[data-ly]');
@@ -63,11 +62,16 @@ document.addEventListener('keydown',e=>{if(e.code==='Space'&&!/INPUT|BUTTON|A/.t
 $('#today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 fetch('data/news.json').then(r=>r.json()).then(n=>{$('#news').innerHTML=n.map(x=>`<li>${x.link?`<a href="${esc(x.link)}"${/^https?:/.test(x.link)?' target="_blank" rel="noopener"':''}>${esc(x.text)}</a>`:esc(x.text)}</li>`).join('')}).catch(()=>{$('.news').hidden=true});
 // sidebar
-function sideUI(){$('#sCount').textContent='('+songs.length+')';$('#sList').innerHTML=songs.map((s,i)=>`<li><a href="#song-${esc(s.id)}" data-si="${i}">${esc(s.title)}</a></li>`).join('')}
-$('#sFilter').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();$('#sList').querySelectorAll('li').forEach(li=>li.hidden=q&&!li.textContent.toLowerCase().includes(q))});
-$('#sList').addEventListener('click',e=>{const l=e.target.closest('[data-si]');if(!l)return;e.preventDefault();const i=+l.dataset.si,s=songs[i];
+function sideUI(){$('#sCount').textContent='('+songs.length+')';$('#sList').innerHTML=songs.map((s,i)=>{const u=extUrl(s);return `<li><a href="${u?esc(u):'#song-'+esc(s.id)}"${u?' target="_blank" rel="noopener"':` data-si="${i}"`}>${esc(s.title)}</a></li>`}).join('')}
+function extUrl(s){const y=ytId(s.youtube);return s.source||(y?'https://www.youtube.com/watch?v='+y:'')}
+function focusSong(i,go){const s=songs[i];if(!s)return;
  if(!view.includes(s)){$('#search').value='';tag=null;tagsUI();render()}
- if(mode(s)!=='link')load(i,true);const el=document.getElementById('song-'+s.id);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600)}
+ if(mode(s)!=='link')load(i,go);const el=document.getElementById('song-'+s.id);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600)}}
+function goHash(){const m=location.hash.match(/^#song-(.+)$/);if(!m||!songs.length)return;let id=m[1];try{id=decodeURIComponent(id)}catch(e){}
+ const i=songs.findIndex(s=>String(s.id)===id);if(i>=0)focusSong(i,false)}
+addEventListener('hashchange',goHash);
+$('#sFilter').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();$('#sList').querySelectorAll('li').forEach(li=>li.hidden=q&&!li.textContent.toLowerCase().includes(q))});
+$('#sList').addEventListener('click',e=>{const l=e.target.closest('[data-si]');if(!l)return;e.preventDefault();focusSong(+l.dataset.si,true);
  if(matchMedia('(max-width:900px)').matches){$('#sideB').classList.remove('open');$('#sideT').setAttribute('aria-expanded','false')}});
 $('#sideT').onclick=()=>{const o=$('#sideB').classList.toggle('open');$('#sideT').setAttribute('aria-expanded',o)};
 })();
