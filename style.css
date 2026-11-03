@@ -1,6 +1,6 @@
 :root{--bg:#05040d;--card:rgba(20,18,40,.72);--acc:#c9a6ff;--acc2:#ff7eb6;--tx:#ece8ff;--mu:#a49fc0}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b1240 0%,var(--bg) 60%);color:var(--tx);font-family:Inter,system-ui,sans-serif;min-height:100vh;padding-bottom:110px}
-#stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 a{color:var(--acc)}.hero{text-align:center;padding:28px 20px 16px}
 h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,9vw,5.5rem);margin:0;letter-spacing:.04em;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .bio{max-width:640px;margin:12px auto;color:var(--mu);line-height:1.6}.links a{text-decoration:none}
