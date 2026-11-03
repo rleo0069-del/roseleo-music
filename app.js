@@ -2,11 +2,16 @@
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
 // starfield
 const cv=$('#stars'),cx=cv.getContext('2d');let st=[];
-function rs(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;st=Array.from({length:Math.min(250,innerWidth/4)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.2*devicePixelRatio+.2,p:Math.random()*6.28,s:.003+Math.random()*.01,v:.01+Math.random()*.04}));if(still)dr()}
-const still=matchMedia('(prefers-reduced-motion: reduce)').matches;let raf=0;
-function dr(){raf=0;cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#fff';for(const s of st){if(!still){s.p+=s.s;s.y+=s.v;if(s.y>cv.height)s.y=0}cx.globalAlpha=.3+.5*Math.abs(Math.sin(s.p));cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.28);cx.fill()}if(!still&&!document.hidden)raf=requestAnimationFrame(dr)}
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!still&&!raf)raf=requestAnimationFrame(dr)});
-addEventListener('resize',rs);rs();dr();
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;let raf=0,lt=0;
+const L=[{n:90,r:.7,v:.004,a:.55},{n:60,r:1.1,v:.009,a:.7},{n:30,r:1.6,v:.016,a:.85}];
+function rs(){const d=devicePixelRatio||1;cv.width=innerWidth*d;cv.height=innerHeight*d;const k=Math.min(1,innerWidth/1200)*.5+.5;st=[];
+ L.forEach(l=>{for(let i=0;i<Math.round(l.n*k);i++)st.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:(l.r+Math.random()*.4)*d,a:l.a,v:l.v*d,dx:l.v*.35*d,p:Math.random()*6.28,s:.0006+Math.random()*.0022})});if(still)dr(0)}
+function dr(t){raf=0;const dt=lt?Math.min(t-lt,50):16;lt=t;cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#fff';
+ for(const s of st){if(!still){s.p+=s.s*dt;s.y+=s.v*dt;s.x+=s.dx*dt;if(s.y>cv.height)s.y-=cv.height;if(s.x>cv.width)s.x-=cv.width}
+  cx.globalAlpha=s.a*(still?.7:.35+.65*Math.abs(Math.sin(s.p)));cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.28);cx.fill()}
+ if(!still&&!document.hidden)raf=requestAnimationFrame(dr)}
+document.addEventListener('visibilitychange',()=>{lt=0;if(!document.hidden&&!still&&!raf)raf=requestAnimationFrame(dr)});
+addEventListener('resize',rs);rs();if(!still)raf=requestAnimationFrame(dr);
 // state
 let songs=[],view=[],cur=-1,tag=null,yt=null,ytReady=false,ytTimer;
 const audio=$('#audio'),fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
