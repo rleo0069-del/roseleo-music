@@ -21,7 +21,7 @@ fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s
 function tagsUI(){const all=[...new Set(songs.flatMap(s=>s.tags))].sort();const w=$('#tags');w.innerHTML='';
  [null,...all].forEach(t=>{const b=document.createElement('button');b.textContent=t||'All';b.setAttribute('aria-pressed',t===tag);b.onclick=()=>{tag=t;tagsUI();render()};w.appendChild(b)})}
 $('#search').addEventListener('input',render);
-const SECS=[['music','#grid'],['books','#gridBooks'],['children','#gridChildren']],secOf=s=>SECS.some(x=>x[0]===s.section)?s.section:'music',rank=s=>SECS.findIndex(x=>x[0]===secOf(s));
+const SECS=[['music','#grid'],['books','#gridBooks'],['children','#gridChildren'],['games','#gridGames']],secOf=s=>SECS.some(x=>x[0]===s.section)?s.section:'music',rank=s=>SECS.findIndex(x=>x[0]===secOf(s));
 function render(){const q=$('#search').value.trim().toLowerCase();
  view=songs.map((s,i)=>[s,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]).map(x=>x[0]).filter(s=>(!tag||s.tags.includes(tag))&&(!q||[s.title,s.artist,s.lyrics,...s.tags].join(' ').toLowerCase().includes(q)));
  $('#count').textContent=view.length+' of '+songs.length+' songs';
