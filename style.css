@@ -49,3 +49,4 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 .portrait{display:block;width:160px;height:160px;margin:4px auto 14px;flex:none;border-radius:50%;object-fit:cover;border:2px solid rgba(201,166,255,.55);box-shadow:0 0 18px rgba(201,166,255,.35),0 0 36px rgba(255,126,182,.18);background:#000}
 @media(max-width:900px){.portrait{width:120px;height:120px}}
 .foot a.glink{color:var(--mu);text-decoration:none;display:inline-flex;align-items:center;gap:5px;vertical-align:middle;white-space:nowrap;transition:color .2s}.foot .glogo{width:16px;height:16px;opacity:.85;transition:opacity .2s,filter .2s}.foot a.glink:hover{color:var(--acc2)}.foot a.glink:hover .glogo{opacity:1;filter:drop-shadow(0 0 4px rgba(200,180,255,.7))}
+.msec{margin-top:56px}.msec .sec{margin-bottom:14px}
