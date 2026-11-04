@@ -615,7 +615,8 @@
     "audio": "",
     "youtube": "NdUJg6gxk8M",
     "source": "https://www.youtube.com/watch?v=NdUJg6gxk8M",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "books"
   },
   {
     "id": "YvYS_PjZQh4",
@@ -767,7 +768,8 @@
     "audio": "",
     "youtube": "zsiqiXUd4C0",
     "source": "https://www.youtube.com/watch?v=zsiqiXUd4C0",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "children"
   },
   {
     "id": "X7BgJhxcClA",
@@ -1143,7 +1145,8 @@
     "audio": "",
     "youtube": "3Hws8LTDbAM",
     "source": "https://www.youtube.com/watch?v=3Hws8LTDbAM",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "books"
   },
   {
     "id": "lUKcc4gjr6o",
@@ -1158,7 +1161,8 @@
     "audio": "",
     "youtube": "lUKcc4gjr6o",
     "source": "https://www.youtube.com/watch?v=lUKcc4gjr6o",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "games"
   },
   {
     "id": "hXusTHWrAkw",
@@ -1345,6 +1349,7 @@
     "audio": "",
     "youtube": "HE5OXuXDtbc",
     "source": "https://www.youtube.com/watch?v=HE5OXuXDtbc",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "games"
   }
 ]
