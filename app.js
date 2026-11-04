@@ -21,20 +21,22 @@ fetch('data/songs.json').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s
 function tagsUI(){const all=[...new Set(songs.flatMap(s=>s.tags))].sort();const w=$('#tags');w.innerHTML='';
  [null,...all].forEach(t=>{const b=document.createElement('button');b.textContent=t||'All';b.setAttribute('aria-pressed',t===tag);b.onclick=()=>{tag=t;tagsUI();render()};w.appendChild(b)})}
 $('#search').addEventListener('input',render);
+const SECS=[['music','#grid'],['books','#gridBooks'],['children','#gridChildren']],secOf=s=>SECS.some(x=>x[0]===s.section)?s.section:'music',rank=s=>SECS.findIndex(x=>x[0]===secOf(s));
 function render(){const q=$('#search').value.trim().toLowerCase();
- view=songs.filter(s=>(!tag||s.tags.includes(tag))&&(!q||[s.title,s.artist,s.lyrics,...s.tags].join(' ').toLowerCase().includes(q)));
+ view=songs.map((s,i)=>[s,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]).map(x=>x[0]).filter(s=>(!tag||s.tags.includes(tag))&&(!q||[s.title,s.artist,s.lyrics,...s.tags].join(' ').toLowerCase().includes(q)));
  $('#count').textContent=view.length+' of '+songs.length+' songs';
- $('#grid').innerHTML=view.map((s,i)=>{const m=mode(s),y=ytId(s.youtube);const img=s.cover||(y?`https://i.ytimg.com/vi/${y}/hqdefault.jpg`:'');
+ const html=view.map((s,i)=>{const m=mode(s),y=ytId(s.youtube);const img=s.cover||(y?`https://i.ytimg.com/vi/${y}/hqdefault.jpg`:'');
  return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
  <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}</div>
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">Listen ↗</a>`:''}
  ${s.lyrics?`<button data-ly="${i}" aria-expanded="false">Lyrics</button>`:''}</div>
- ${s.lyrics?`<div class="lyrics" id="ly${i}" hidden>${esc(s.lyrics)}</div>`:''}</div></article>`}).join('')}
-$('#grid').addEventListener('click',e=>{const p=e.target.closest('[data-play]'),l=e.target.closest('[data-ly]');
+ ${s.lyrics?`<div class="lyrics" id="ly${i}" hidden>${esc(s.lyrics)}</div>`:''}</div></article>`});
+ SECS.forEach(([k,g])=>{const h=view.map((s,i)=>secOf(s)===k?html[i]:'').join('');$(g).innerHTML=h;if(k!=='music')$(g).parentElement.hidden=!h})}
+SECS.forEach(([,g])=>$(g).addEventListener('click',e=>{const p=e.target.closest('[data-play]'),l=e.target.closest('[data-ly]');
  if(p){const s=view[+p.dataset.play],i=songs.indexOf(s);i===cur?toggle():load(i,true)}
- if(l){const d=$('#ly'+l.dataset.ly),o=d.hidden;d.hidden=!o;l.setAttribute('aria-expanded',o)}});
-function playable(){return songs.map((s,i)=>i).filter(i=>mode(songs[i])!=='link')}
+ if(l){const d=$('#ly'+l.dataset.ly),o=d.hidden;d.hidden=!o;l.setAttribute('aria-expanded',o)}}));
+function playable(){return songs.map((s,i)=>i).sort((a,b)=>rank(songs[a])-rank(songs[b])||a-b).filter(i=>mode(songs[i])!=='link')}
 function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo)yt.stopVideo();clearInterval(ytTimer)}
 function load(i,go){stopAll();cur=i;const s=songs[i];$('#pTitle').textContent=s.title;$('#pArtist').textContent=s.artist||'';
  const y=ytId(s.youtube),img=s.cover||(y?`https://i.ytimg.com/vi/${y}/default.jpg`:'');const pc=$('#pCover');pc.hidden=!img;if(img)pc.src=img;
