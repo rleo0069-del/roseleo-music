@@ -119,3 +119,10 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 @media(prefers-reduced-motion:reduce){.isplaying .djring{animation:none}.dhead .portrait.dj{transition:none}}
 
 .procl .proclink{display:block;border-radius:10px;overflow:hidden;border:1px solid var(--ln)}.procl img{display:block;width:100%;height:auto;transition:transform .3s}.procl .proclink:hover img,.procl .proclink:focus-visible img{transform:scale(1.02)}.procl .proclink:focus-visible{outline:2px solid #38bdf8;outline-offset:2px}@media (prefers-reduced-motion:reduce){.procl img{transition:none}}
+
+.arcade .ah{color:inherit;text-decoration:none}.arcade .ah:hover,.arcade .ah:focus-visible{color:var(--acc);text-decoration:underline}
+.agames{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 14px}
+.agames li{display:flex;flex-direction:column;gap:2px;padding:6px 8px;border:1px solid rgba(28,54,102,.55);border-radius:8px;background:rgba(6,16,42,.45);min-width:0}
+.agames a{color:var(--tx);text-decoration:none;font-weight:600;font-size:.85rem}.agames a:hover,.agames a:focus-visible{color:#7dd3fc}
+.agames span{color:var(--mu);font-size:.72rem;line-height:1.35}
+@media(max-width:640px){.agames{grid-template-columns:1fr}}
