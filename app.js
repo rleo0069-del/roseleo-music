@@ -29,7 +29,7 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
  <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}</div>
- <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">Listen ↗</a>`:''}
+ <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">${secOf(s)==='books'?'View':'Open'} ↗</a>`:''}
  ${s.lyrics?`<button data-ly="${i}" aria-expanded="false">Lyrics</button>`:''}</div>
  ${s.lyrics?`<div class="lyrics" id="ly${i}" hidden>${esc(s.lyrics)}</div>`:''}</div></article>`});
  SECS.forEach(([k,g])=>{const h=view.map((s,i)=>secOf(s)===k?html[i]:'').join('');$(g).innerHTML=h;if(k!=='music')$(g).parentElement.hidden=!h})}
