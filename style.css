@@ -143,3 +143,11 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 .gdot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
 .card .gbadge{display:inline-block;font:600 .62rem ui-monospace,monospace;letter-spacing:.06em;border-radius:999px;padding:2px 7px;margin:4px 4px 0 0;color:#0b1220}
 .card .secbadge{opacity:.8;background:transparent !important;color:var(--mu) !important;border:1px solid var(--ln)}
+
+/* YouTube rank badge folded into genre cards */
+.ranknote{text-align:center;color:var(--mu);font-size:.78rem;margin:-4px 0 16px}
+.cover .rn{position:absolute;top:6px;left:6px;z-index:2;min-width:22px;height:22px;padding:0 6px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 .72rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:-.02em;background:rgba(10,8,28,.82);color:#e9dcff;border:1px solid rgba(180,150,255,.45);backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.cover .rn[data-rank="1"]{color:#ffe9a8;border-color:rgba(212,160,23,.65);background:rgba(40,28,8,.88);box-shadow:0 0 8px rgba(212,160,23,.35)}
+.cover .rn[data-rank="2"]{color:#f0f3f8;border-color:rgba(170,185,205,.6);background:rgba(24,28,36,.88)}
+.cover .rn[data-rank="3"]{color:#f0c19a;border-color:rgba(184,115,51,.6);background:rgba(36,20,10,.88)}
+

@@ -17,7 +17,7 @@ let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer;
 const audio=$('#audio'),fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
 const ytId=u=>{if(!u)return'';const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u)?u:'')};
 const mode=s=>s.audio?'audio':ytId(s.youtube)?'youtube':'link';
-fetch('data/songs.json?v=20261111h').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI();chartBind();goHash();dashInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261111i').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI();chartBind();goHash();dashInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(!w)return;w.innerHTML='';
@@ -37,9 +37,11 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  const html=view.map((s,i)=>{const m=mode(s),y=ytId(s.youtube);const img=s.cover||(y?`https://i.ytimg.com/vi/${y}/hqdefault.jpg`:'');
  const badge=secOf(s)==='music'&&s.genre?`<span class="gbadge" style="background:${GCOL[s.genre]||'#94a3b8'}">${esc(s.genre)}</span>`:'';
  const badge2=s.genre2?`<span class="gbadge secbadge">also ${esc(s.genre2)}</span>`:'';
- return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
+ const rn=s.rank?`<span class="rn" data-rank="${+s.rank}">${+s.rank}</span>`:'';
+ const views=s.views!=null?' · '+Number(s.views).toLocaleString()+' views':'';
+ return `<article class="card${songs.indexOf(s)===cur?' playing':''}" data-i="${i}" data-sid="${esc(s.id)}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}${rn}
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
- <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}</div>
+ <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}${views}</div>
  ${badge}${badge2}
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}" target="_blank" rel="noopener">${secOf(s)==='books'?'View':'Open'} ↗</a>`:''}${s.article?`<a class="btn" href="${esc(s.article)}">Read the Grokapedia entry</a>`:''}
  ${s.lyrics?`<button data-ly="${i}" aria-expanded="false">Lyrics</button>`:''}</div>
