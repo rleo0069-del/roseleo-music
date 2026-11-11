@@ -45,7 +45,7 @@ function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,g
  else withYT(()=>{yt.setVolume($('#vol').value*100);go?yt.loadVideoById(y):yt.cueVideoById(y);ytTimer=setInterval(ytTick,500)});
  render();setBtn(go)}
 function withYT(cb){if(ytReady)return cb();window._ytq=cb;if(!window.YT){const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}}
-window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:120,height:68,playerVars:{playsinline:1,controls:0},events:{onReady:()=>{ytReady=true;window._ytq&&window._ytq()},
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:240,height:136,playerVars:{playsinline:1,controls:0},events:{onReady:()=>{ytReady=true;window._ytq&&window._ytq()},
  onStateChange:e=>{setBtn(e.data===1);if(e.data===0)step(1)}}})};
 function ytTick(){if(!ytReady||mode(songs[cur])!=='youtube')return;const d=yt.getDuration(),t=yt.getCurrentTime();$('#cur').textContent=fmt(t);$('#dur').textContent=fmt(d);if(d)$('#seek').value=t/d*100}
 function isPlaying(){if(cur<0)return false;return mode(songs[cur])==='audio'?!audio.paused:(ytReady&&yt.getPlayerState&&yt.getPlayerState()===1)}
@@ -118,3 +118,9 @@ function viz(t){vraf=0;const w=vc.width,h=vc.height;if(!w||!h){vsize()}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&playing&&!vraf)vraf=requestAnimationFrame(viz)});
 vraf=requestAnimationFrame(viz);
 })();
+
+(()=>{const w=document.getElementById('ytWrap'),g=w&&w.querySelector('.ytgrip');if(!g)return;let sx,sy,ox,oy,d=false;
+const mv=e=>{if(!d)return;const p=e.touches?e.touches[0]:e;let x=ox+p.clientX-sx,y=oy+p.clientY-sy;x=Math.max(0,Math.min(innerWidth-w.offsetWidth,x));y=Math.max(0,Math.min(innerHeight-w.offsetHeight,y));w.style.left=x+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';e.preventDefault()};
+const up=()=>{d=false;w.classList.remove('dragging')};
+const dn=e=>{const p=e.touches?e.touches[0]:e,r=w.getBoundingClientRect();sx=p.clientX;sy=p.clientY;ox=r.left;oy=r.top;d=true;w.classList.add('dragging');e.preventDefault()};
+g.addEventListener('mousedown',dn);g.addEventListener('touchstart',dn,{passive:false});addEventListener('mousemove',mv);addEventListener('touchmove',mv,{passive:false});addEventListener('mouseup',up);addEventListener('touchend',up)})();
