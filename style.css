@@ -126,3 +126,6 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 .agames a{color:var(--tx);text-decoration:none;font-weight:600;font-size:.85rem}.agames a:hover,.agames a:focus-visible{color:#7dd3fc}
 .agames span{color:var(--mu);font-size:.72rem;line-height:1.35}
 @media(max-width:640px){.agames{grid-template-columns:1fr}}
+
+.gpbtn{display:inline-block;vertical-align:middle;margin:6px 4px;border-radius:10px;overflow:hidden;line-height:0;box-shadow:0 2px 8px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}.gpbtn img{width:210px;height:auto;display:block}.gpbtn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(200,180,255,.5)}.foot .gpbtn img{width:180px}
+.gbad{display:block;width:120px;margin:4px auto 10px;transition:transform .2s}.gbad img{width:120px;height:120px;display:block;border-radius:26px}.gbad:hover{transform:scale(1.05)}
