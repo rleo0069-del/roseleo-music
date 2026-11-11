@@ -151,3 +151,40 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 .cover .rn[data-rank="2"]{color:#f0f3f8;border-color:rgba(170,185,205,.6);background:rgba(24,28,36,.88)}
 .cover .rn[data-rank="3"]{color:#f0c19a;border-color:rgba(184,115,51,.6);background:rgba(36,20,10,.88)}
 
+/* compact proclamation */
+.procl.compact .proclink{max-width:400px;margin:0 auto}
+.procl.compact{padding:10px 12px 12px}
+.procl.compact .ph{margin-bottom:6px}
+
+/* Free Ads in the dashboard column */
+.panel.ads{padding:12px 14px}
+.panel.ads .adgrid{margin-top:8px}
+
+/* Arcade in Games / Extras */
+.arcade-games{margin:28px 0 8px}
+
+/* My favorites */
+.favs .favhint{margin:0 0 8px;color:var(--mu);font-size:.72rem;line-height:1.35}
+.favlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;min-height:44px}
+.favitem{display:flex;align-items:center;gap:6px;min-width:0;background:rgba(6,16,42,.5);border:1px solid var(--ln);border-radius:8px;padding:3px 4px 3px 3px}
+.favplay{flex:1;display:flex;align-items:center;gap:8px;min-width:0;background:none;border:0;color:var(--tx);font:inherit;font-size:.78rem;text-align:left;cursor:pointer;padding:0}
+.favplay img,.favplay span:first-child{width:32px;height:32px;border-radius:6px;object-fit:cover;background:#0b1834;flex:none}
+.favplay span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.favplay:hover{color:var(--acc)}
+.favx{flex:none;width:20px;height:20px;border:0;border-radius:4px;background:transparent;color:var(--mu);font-size:14px;line-height:20px;padding:0;cursor:pointer}
+.favx:hover{background:#e0457b;color:#fff}
+.favempty{color:var(--mu);font-size:.75rem;padding:8px 4px;text-align:center;border:1px dashed var(--ln);border-radius:8px}
+.favs.ready{outline:1px dashed var(--acc);outline-offset:2px}
+.favs.over{outline:2px solid var(--acc2);background:rgba(244,114,182,.08)}
+.favs.full{outline:2px solid #fbbf24}
+.cover .favbtn{position:absolute;top:6px;right:6px;z-index:2;width:24px;height:24px;border-radius:50%;border:1px solid rgba(180,150,255,.35);background:rgba(10,8,28,.82);color:#c4b5e0;font-size:12px;line-height:1;padding:0;cursor:pointer;display:grid;place-items:center}
+.cover .favbtn.on,.cover .favbtn[aria-pressed="true"]{color:#f472b6;border-color:rgba(244,114,182,.7);background:rgba(40,10,24,.9)}
+.cover .favbtn:hover{color:#f472b6}
+.card[draggable="true"]{cursor:grab}
+.card.dragging,.favdragging .card{opacity:.72}
+.favghost{position:fixed;z-index:200;pointer-events:none;display:flex;align-items:center;gap:8px;transform:translate(-50%,-60%);background:rgba(10,16,40,.94);border:1px solid var(--acc);border-radius:10px;padding:4px 10px 4px 4px;box-shadow:0 8px 24px rgba(0,0,0,.45);max-width:220px;color:var(--tx);font-size:.78rem}
+.favghost img{width:32px;height:32px;border-radius:6px;object-fit:cover;flex:none}
+.favghost span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.favdragging{cursor:grabbing;user-select:none}
+body.favdragging{touch-action:none}
+
