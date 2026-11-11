@@ -188,3 +188,24 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 body.favdragging{cursor:grabbing;user-select:none}
 body.favdragging{touch-action:none}
 
+/* Veteran poster beside the proclamation */
+.posters{align-items:start;margin:0}
+.posters .panel{min-width:0}
+.vetposter{padding:10px 12px 12px}
+.vetposter .ph{margin-bottom:6px}
+.vetthumb{display:block;width:100%;max-width:280px;margin:0 auto;padding:0;border:0;background:none;cursor:zoom-in;text-align:center;color:inherit;font:inherit}
+.vetthumb img{display:block;width:100%;height:auto;max-height:320px;object-fit:contain;border-radius:10px;border:1px solid var(--ln);background:#070b16}
+.vetcap{display:block;margin-top:6px;font-size:.72rem;color:var(--mu);letter-spacing:.04em}
+.vetthumb:hover .vetcap,.vetthumb:focus-visible .vetcap{color:var(--acc)}
+.vetthumb:focus-visible img{outline:2px solid #38bdf8;outline-offset:2px}
+@media(max-width:800px){.posters{grid-template-columns:1fr}}
+
+/* Lightbox */
+.vetlb{position:fixed;inset:0;z-index:80;background:rgba(2,6,16,.92);display:flex;align-items:center;justify-content:center;padding:48px 16px 16px}
+.vetlb[hidden]{display:none !important}
+.vetlb-x{position:absolute;top:10px;right:12px;z-index:2;width:36px;height:36px;border:0;border-radius:8px;background:rgba(255,255,255,.12);color:#fff;font-size:24px;line-height:36px;padding:0;cursor:pointer}
+.vetlb-x:hover,.vetlb-x:focus-visible{background:#e0457b}
+.vetlb-stage{max-width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom}
+.vetlb-stage img{display:block;max-width:100%;max-height:calc(100dvh - 56px);width:auto;height:auto;margin:0 auto;object-fit:contain;touch-action:pan-x pan-y pinch-zoom;user-select:none}
+body.vetopen{overflow:hidden}
+
