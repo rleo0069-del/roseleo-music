@@ -6,6 +6,7 @@
     "tags": [
       "aimusicgen"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "",
     "cover": "https://cdn1.aimusicgen.ai/result/music-cover/p40M61EXAPmst2OH3YAtc1pxN5ObpSAe/dde04c4c-f401-47a9-b625-1a0cedc6ce31.jpeg",
@@ -21,6 +22,8 @@
     "tags": [
       "aimusicgen"
     ],
+    "genre": "Tech anthems",
+    "genre2": "Techno",
     "date": "2026-09-04",
     "duration": "5:49",
     "cover": "https://cdn1.aimusicgen.ai/aimusicgen/music-cover/5f97f144-c094-4db1-89bf-9d217df05a2c.jpg",
@@ -36,6 +39,7 @@
     "tags": [
       "aimusicgen"
     ],
+    "genre": "Tech anthems",
     "date": "2026-09-02",
     "duration": "4:32",
     "cover": "https://cdn1.aimusicgen.ai/aimusicgen/music-cover/26bf4c5f-adeb-4ae2-93e1-4e6b8767c07c.png",
@@ -51,6 +55,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "2026-11-02",
     "duration": "8:06",
     "cover": "",
@@ -82,6 +87,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
+    "genre2": "Tech anthems",
     "date": "2026-10-31",
     "duration": "10:24",
     "cover": "",
@@ -97,6 +104,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
+    "genre2": "Techno",
     "date": "2026-10-29",
     "duration": "10:24",
     "cover": "",
@@ -112,6 +121,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
     "date": "2026-10-28",
     "duration": "8:27",
     "cover": "",
@@ -127,6 +137,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
+    "genre2": "Techno",
     "date": "2026-10-28",
     "duration": "5:22",
     "cover": "",
@@ -158,6 +170,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "2026-10-28",
     "duration": "10:59",
     "cover": "",
@@ -173,6 +186,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
     "date": "2026-10-27",
     "duration": "1:50",
     "cover": "",
@@ -188,6 +202,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "2026-10-06",
     "duration": "6:23",
     "cover": "",
@@ -203,6 +218,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "2026-10-05",
     "duration": "4:03",
     "cover": "",
@@ -218,6 +234,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
+    "genre2": "Space theme",
     "date": "2026-10-04",
     "duration": "3:02",
     "cover": "",
@@ -249,6 +267,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
+    "genre2": "Techno",
     "date": "2026-09-04",
     "duration": "5:51",
     "cover": "",
@@ -264,6 +284,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:01",
     "cover": "",
@@ -279,6 +300,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
+    "genre2": "Romantic",
     "date": "",
     "duration": "6:20",
     "cover": "",
@@ -294,6 +317,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "1:30",
     "cover": "",
@@ -309,6 +333,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "4:34",
     "cover": "",
@@ -324,6 +349,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "2:15",
     "cover": "",
@@ -339,6 +365,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "4:50",
     "cover": "",
@@ -354,6 +381,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "6:04",
     "cover": "",
@@ -369,6 +397,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "5:05",
     "cover": "",
@@ -384,6 +413,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "5:08",
     "cover": "",
@@ -399,6 +429,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "5:35",
     "cover": "",
@@ -414,6 +445,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "4:55",
     "cover": "",
@@ -429,6 +461,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
+    "genre2": "Techno",
     "date": "",
     "duration": "4:59",
     "cover": "",
@@ -444,6 +478,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "3:55",
     "cover": "",
@@ -459,6 +494,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "5:36",
     "cover": "",
@@ -474,6 +510,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "0:31",
     "cover": "",
@@ -489,6 +526,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "5:06",
     "cover": "",
@@ -504,6 +542,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "3:51",
     "cover": "",
@@ -519,6 +558,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
+    "genre2": "Tech anthems",
     "date": "",
     "duration": "6:00",
     "cover": "",
@@ -534,6 +575,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:46",
     "cover": "",
@@ -549,6 +591,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:59",
     "cover": "",
@@ -564,6 +607,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:29",
     "cover": "",
@@ -579,6 +623,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "6:09",
     "cover": "",
@@ -594,6 +639,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "4:51",
     "cover": "",
@@ -625,6 +671,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:04",
     "cover": "",
@@ -640,6 +687,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:29",
     "cover": "",
@@ -687,6 +735,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "5:09",
     "cover": "",
@@ -702,6 +751,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Techno",
     "date": "",
     "duration": "4:16",
     "cover": "",
@@ -717,6 +767,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:33",
     "cover": "",
@@ -732,6 +783,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
     "date": "",
     "duration": "0:49",
     "cover": "",
@@ -779,6 +831,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "7:53",
     "cover": "",
@@ -794,6 +847,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "7:09",
     "cover": "",
@@ -809,6 +863,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:40",
     "cover": "",
@@ -824,6 +879,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "6:05",
     "cover": "",
@@ -839,6 +895,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:16",
     "cover": "",
@@ -854,6 +911,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:56",
     "cover": "",
@@ -869,6 +927,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "5:51",
     "cover": "",
@@ -884,6 +943,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
+    "genre2": "Techno",
     "date": "",
     "duration": "6:31",
     "cover": "",
@@ -899,6 +960,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
     "date": "",
     "duration": "5:06",
     "cover": "",
@@ -914,6 +976,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
+    "genre2": "Tech anthems",
     "date": "",
     "duration": "6:08",
     "cover": "",
@@ -929,6 +993,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "5:40",
     "cover": "",
@@ -944,6 +1009,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "4:37",
     "cover": "",
@@ -959,6 +1025,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "6:26",
     "cover": "",
@@ -974,6 +1041,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:17",
     "cover": "",
@@ -989,6 +1057,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:01",
     "cover": "",
@@ -1004,6 +1073,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "4:44",
     "cover": "",
@@ -1019,6 +1089,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Slop core",
+    "genre2": "Techno",
     "date": "",
     "duration": "7:01",
     "cover": "",
@@ -1034,6 +1106,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "6:56",
     "cover": "",
@@ -1049,6 +1122,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Romantic",
+    "genre2": "Techno",
     "date": "",
     "duration": "6:21",
     "cover": "",
@@ -1064,6 +1139,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
+    "genre2": "Romantic",
     "date": "",
     "duration": "3:27",
     "cover": "",
@@ -1095,6 +1172,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "",
     "duration": "2:01",
     "cover": "",
@@ -1110,6 +1188,8 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Techno",
+    "genre2": "Space theme",
     "date": "",
     "duration": "1:51",
     "cover": "",
@@ -1125,6 +1205,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Techno",
     "date": "",
     "duration": "2:39",
     "cover": "",
@@ -1172,6 +1253,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "0:03",
     "cover": "",
@@ -1219,6 +1301,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Space theme",
     "date": "2026-06-02",
     "duration": "2:19",
     "cover": "",
@@ -1314,6 +1397,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "2:36",
     "cover": "",
@@ -1329,6 +1413,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "Tech anthems",
     "date": "",
     "duration": "1:37",
     "cover": "",
@@ -1360,6 +1445,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "4:42",
     "cover": "",
@@ -1375,6 +1461,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "7:14",
     "cover": "",
@@ -1390,6 +1477,7 @@
     "tags": [
       "youtube"
     ],
+    "genre": "More",
     "date": "",
     "duration": "4:42",
     "cover": "",
