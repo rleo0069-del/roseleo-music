@@ -119,8 +119,12 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&playing&&
 vraf=requestAnimationFrame(viz);
 })();
 
-(()=>{const w=document.getElementById('ytWrap'),g=w&&w.querySelector('.ytgrip');if(!g)return;let sx,sy,ox,oy,d=false;
-const mv=e=>{if(!d)return;const p=e.touches?e.touches[0]:e;let x=ox+p.clientX-sx,y=oy+p.clientY-sy;x=Math.max(0,Math.min(innerWidth-w.offsetWidth,x));y=Math.max(0,Math.min(innerHeight-w.offsetHeight,y));w.style.left=x+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';e.preventDefault()};
-const up=()=>{d=false;w.classList.remove('dragging')};
-const dn=e=>{const p=e.touches?e.touches[0]:e,r=w.getBoundingClientRect();sx=p.clientX;sy=p.clientY;ox=r.left;oy=r.top;d=true;w.classList.add('dragging');e.preventDefault()};
-g.addEventListener('mousedown',dn);g.addEventListener('touchstart',dn,{passive:false});addEventListener('mousemove',mv);addEventListener('touchmove',mv,{passive:false});addEventListener('mouseup',up);addEventListener('touchend',up)})();
+(()=>{const P=document.getElementById('player'),g=P&&P.querySelector('.pgrip');if(!g)return;let sx,sy,ox,oy,d=false;
+const fit=()=>{const w=Math.max(160,Math.min(560,Math.min(P.clientWidth*.3,(P.clientHeight-40)/.5625)));P.style.setProperty('--ytw',w+'px')};
+if(window.ResizeObserver)new ResizeObserver(fit).observe(P);fit();
+const flo=()=>{if(P.classList.contains('floating'))return;const r=P.getBoundingClientRect();P.classList.add('floating');P.style.width=r.width+'px';P.style.height=r.height+'px';P.style.left=r.left+'px';P.style.top=r.top+'px';P.style.right='auto';P.style.bottom='auto'};
+const mv=e=>{if(!d)return;const p=e.touches?e.touches[0]:e;let x=ox+p.clientX-sx,y=oy+p.clientY-sy;x=Math.max(-P.offsetWidth+80,Math.min(innerWidth-80,x));y=Math.max(0,Math.min(innerHeight-30,y));P.style.left=x+'px';P.style.top=y+'px';e.preventDefault()};
+const up=()=>{d=false;P.classList.remove('dragging')};
+const dn=e=>{flo();const p=e.touches?e.touches[0]:e,r=P.getBoundingClientRect();sx=p.clientX;sy=p.clientY;ox=r.left;oy=r.top;d=true;P.classList.add('dragging');e.preventDefault()};
+g.addEventListener('mousedown',dn);g.addEventListener('touchstart',dn,{passive:false});addEventListener('mousemove',mv);addEventListener('touchmove',mv,{passive:false});addEventListener('mouseup',up);addEventListener('touchend',up);
+g.addEventListener('dblclick',()=>{P.classList.remove('floating');['width','height','left','top','right','bottom'].forEach(k=>P.style[k]='')})})();
