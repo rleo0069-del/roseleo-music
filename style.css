@@ -159,6 +159,13 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 /* Free Ads in the dashboard column */
 .panel.ads{padding:12px 14px}
 .panel.ads .adgrid{margin-top:8px}
+.sblaunch{margin:8px 0 12px;text-align:center}
+.sblib{display:block;margin:0 auto 8px;max-width:260px}
+.sblaunch-img{display:block;margin:0 auto 8px;max-width:100%}
+.sblib img,.sblaunch-img img{width:100%;height:auto;display:block;border-radius:12px}
+.sblib-links{margin:0;font-size:.8rem;line-height:1.5;color:var(--mu)}
+.sblib-links a{color:var(--acc2)}
+@media(max-width:640px){.sblib{max-width:200px}.sblib-links{font-size:.75rem}}
 
 /* Arcade in Games / Extras */
 .arcade-games{margin:28px 0 8px}
