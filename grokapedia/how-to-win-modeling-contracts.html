@@ -198,6 +198,7 @@ footer.note {
   dl.meta div { grid-template-columns: 1fr; gap: 0.15rem; }
   .pair { flex-direction: column; }
   .pair figure, figure.fig, figure.wide { max-width: min(100%, 280px); }
+  .row-photos figure.fig { max-width: none; }
 }
 ol.xlist { font-size: 0.92em; line-height: 1.5; max-height: 32em; overflow-y: auto; padding-left: 2.6em; border: 1px solid #e5e5e5; border-radius: 6px; padding-top: .5em; padding-bottom: .5em; }
 ol.xlist .xd { color: #777; font-size: .9em; white-space: nowrap; }
@@ -228,6 +229,35 @@ ol.xlist .xd { color: #777; font-size: .9em; white-space: nowrap; }
 }
 .quick-facts ol li { margin: 0.35em 0; overflow-wrap: anywhere; }
 .quick-facts li:target { background: #f0ead8; }
+
+.row-photos {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  align-items: stretch;
+  margin: 1.1em 0 1.3em;
+  max-width: 100%;
+}
+.row-photos figure.fig {
+  flex: 1 1 0;
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.row-photos figure.fig img {
+  width: 100%;
+  height: auto;
+  flex: 0 0 auto;
+}
+@media (max-width: 480px) {
+  .row-photos {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .row-photos figure.fig { max-width: min(100%, 280px); }
+}
 </style>
 </head>
 <body>
@@ -345,6 +375,7 @@ ol.xlist .xd { color: #777; font-size: .9em; white-space: nowrap; }
 <img src="mar-a-lago-2007.jpg" width="420" alt="Printed photo spread titled Viper meeting Palm Beach 2007, with captions about Mar-a-Lago and Palm Beach fashion">
 <figcaption>Fashion show produced by Rose Marie Leo at the 2007 Viper meeting, Mar-a-Lago, Palm Beach. Printed photo spread from the event program.</figcaption>
 </figure>
+<div class="row-photos">
 <figure class="fig">
 <img src="viper-club-mar-a-lago-2008.png" width="260" alt="Hulk Hogan with a fashion model at the Viper Club of America fashion show, Mar-a-Lago, 2008">
 <figcaption>Hulk Hogan with a fashion model, Viper Club of America fashion show, Mar-a-Lago, 2008</figcaption>
@@ -353,6 +384,7 @@ ol.xlist .xd { color: #777; font-size: .9em; white-space: nowrap; }
 <img src="event-harpist.jpg" width="260" alt="Harpist Marcos Vega performing at a formal event">
 <figcaption>Marcos Vega, a talent Rose personally marketed</figcaption>
 </figure>
+</div>
 <p>In June 2010 MTTN produced “Styles on the Beach,” a charity fashion show at Ocean Walk in Hollywood Beach, Florida, featuring designer Albert of House of Albert, with proceeds benefiting the Art and Culture Center of Hollywood.<sup><a href="#ref16">[16]</a></sup></p>
 <p>Leo has said that she helped create the first Fort Lauderdale Fashion Week, around 2007.<sup><a href="#ref6">[6]</a></sup></p>
 <p>From 2008 she also undertook fashion-show and business consulting, including for Cj Collezione in 2008, for Liquidation Warehouse in Canada from 2008 to 2009, and, as of December 2020, for The House of Albert Fashions in North Carolina from 2009.</p>
