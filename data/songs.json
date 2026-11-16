@@ -1628,5 +1628,20 @@
     "youtube": "qBH7RIBObf4",
     "source": "https://www.youtube.com/watch?v=qBH7RIBObf4",
     "lyrics": ""
+  },
+  {
+    "id": "mentats",
+    "title": "Mentats",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "Romantic",
+    "rank": "",
+    "date": "",
+    "duration": "4:47",
+    "cover": "assets/covers/mentats.jpg",
+    "audio": "assets/audio/mentats.mp3",
+    "youtube": "",
+    "source": "",
+    "lyrics": ""
   }
 ]
