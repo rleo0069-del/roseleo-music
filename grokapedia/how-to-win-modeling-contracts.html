@@ -408,6 +408,85 @@ figure.runway-pair .row-photos + .row-photos {
 @media (max-width: 600px) {
   #photo-carousel { margin-left: -16px; margin-right: -16px; border-radius: 0; }
 }
+
+.testimonials {
+  --ts-bg: #111114;
+  --ts-text: #eeeae3;
+  --ts-muted: #9a958c;
+  --ts-accent: #c4a574;
+  --ts-line: #2a2a30;
+  background: var(--ts-bg);
+  color: var(--ts-text);
+  margin: 2.4em -22px 1.1em;
+  padding: 1.4em 1.45em 1.5em;
+  border-radius: 8px;
+}
+.testimonials h2 {
+  margin: 0 0 1em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--ts-line);
+  color: var(--ts-text);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+.testimonials blockquote {
+  margin: 0 0 1.3em;
+  padding: 0 0 0 1em;
+  border-left: 3px solid var(--ts-accent);
+  color: var(--ts-text);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+.testimonials blockquote:last-child { margin-bottom: 0; }
+.testimonials blockquote p { margin: 0; }
+.testimonials blockquote footer {
+  display: block;
+  margin-top: 0.65em;
+  color: var(--ts-muted);
+  font-size: 0.86rem;
+  font-style: italic;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+}
+.testimonials blockquote footer::before { content: "— "; }
+
+.free-download {
+  --fd-bg: #111114;
+  --fd-text: #eeeae3;
+  --fd-muted: #9a958c;
+  --fd-accent: #c4a574;
+  --fd-line: #2a2a30;
+  background: var(--fd-bg);
+  color: var(--fd-text);
+  margin: 0 -22px 0;
+  padding: 1em 1.45em 1.15em;
+  border-radius: 8px;
+}
+.free-download h2 {
+  margin: 0 0 0.45em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--fd-line);
+  color: var(--fd-text);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.free-download p { margin: 0; font-size: 0.98rem; line-height: 1.5; }
+.free-download a {
+  color: var(--fd-accent);
+  text-decoration: none;
+}
+.free-download a:hover {
+  color: #e0c594;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .testimonials,
+  .free-download {
+    margin-left: -16px;
+    margin-right: -16px;
+    border-radius: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -420,6 +499,8 @@ figure.runway-pair .row-photos + .row-photos {
   <a href="#author-x">Writing on X</a>
   <a href="#publication">Publication Details</a>
   <a href="#links">Links &amp; References</a>
+  <a href="#what-people-say">What People Say</a>
+  <a href="#free-download">Free Download</a>
   <a href="#quick-facts">Quick Facts</a>
 </nav>
 
@@ -824,6 +905,27 @@ figure.runway-pair .row-photos + .row-photos {
 <li id="ref29">X, published Articles on the account <a href="https://x.com/Rose_M_Leo">@Rose_M_Leo</a>, November 2024–November 2026 (164 counted November 15, 2026).</li>
 </ol>
 
+
+<section class="testimonials" id="what-people-say">
+<h2>What People Say</h2>
+<blockquote>
+<p>Rose makes things happen! She is an excellent event coordinator, organizer and inspiration for creating an experience that is unforgettable. She is a long-time pro at managing talent. Further, she completely understands the fashion industry from the top down and makes a superior go to person for any fashion related event.</p>
+<footer>B2B digital marketing strategist and keynote speaker, 2009</footer>
+</blockquote>
+<blockquote>
+<p>Over the past 15 years I have had the opportunity to work with Rose on over 10 different projects, including High Fashion shows. I have always felt very fortunate to have a solid relationship with Rose and to know that all of our company's needs would be met during each project. Rose consistently worked in a very professional manner.</p>
+<footer>Engineering project coordinator, 2012</footer>
+</blockquote>
+<blockquote>
+<p>Thanks Rose for assisting me in learning how to use and understand the LinkedIn platform. Your patience and easy teaching approach allowed me to navigate the site quickly.</p>
+<footer>Inventor and entrepreneur, 2015</footer>
+</blockquote>
+</section>
+
+<aside class="free-download" id="free-download">
+<h2>Free Download</h2>
+<p><a href="Elementary-Manners-by-Rose-Marie-Leo.pdf" download="Elementary-Manners-by-Rose-Marie-Leo.pdf">Elementary Manners by Rose Marie Leo, a free etiquette guide (PDF)</a></p>
+</aside>
 
 <section class="quick-facts" id="quick-facts">
 <h2>Quick Facts about Rose</h2>
