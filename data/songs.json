@@ -1659,5 +1659,20 @@
     "youtube": "",
     "source": "",
     "lyrics": ""
+  },
+  {
+    "id": "cyber-inception",
+    "title": "Cyber-Inception",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "Tech anthems",
+    "rank": "",
+    "date": "2026-11-17",
+    "duration": "5:07",
+    "cover": "assets/covers/cyber-inception.jpg",
+    "audio": "assets/audio/cyber-inception.mp3",
+    "youtube": "",
+    "source": "",
+    "lyrics": ""
   }
 ]
