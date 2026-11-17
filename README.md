@@ -1,6 +1,6 @@
 # Rose Leo — Music
 
-Static music portfolio site: https://rleo0069-del.github.io/roseleo-music/
+Static music portfolio site: https://odysseyofmusic.com/
 
 No build step. Edit `data/songs.json` and push; GitHub Pages redeploys automatically.
 
