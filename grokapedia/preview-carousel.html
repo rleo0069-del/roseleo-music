@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Modeling photo carousel — preview</title>
+<style>
+  :root {
+    --bg: #111114;
+    --bg-elev: #1a1a1f;
+    --text: #eeeae3;
+    --muted: #9a958c;
+    --accent: #c4a574;
+    --accent-dim: #8a6f45;
+    --line: #2a2a30;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    text-align: center;
+    padding: 20px 20px 8px;
+  }
+  .preview-note {
+    margin: 0 0 8px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
+  }
+  .carousel {
+    position: relative;
+    flex: 1;
+    width: min(960px, 100%);
+    margin: 0 auto;
+    padding: 8px 0 28px;
+  }
+  .viewport {
+    overflow: hidden;
+    width: 100%;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+  .viewport:active { cursor: grabbing; }
+  .track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.45s ease;
+    will-change: transform;
+  }
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 56px 0;
+    margin: 0;
+  }
+  .slide img {
+    display: block;
+    max-width: 100%;
+    max-height: 72vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 12px 40px rgba(0,0,0,.55);
+    background: #000;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .slide figcaption {
+    margin: 14px 8px 0;
+    font-family: Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+    font-size: 1.02rem;
+    line-height: 1.4;
+    color: #d4cfc4;
+    text-align: center;
+    max-width: 36em;
+  }
+  .nav {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: rgba(18,18,22,.72);
+    color: var(--text);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 3px;
+    transition: background .2s, border-color .2s;
+  }
+  .nav:hover, .nav:focus-visible {
+    background: rgba(196,165,116,.22);
+    border-color: var(--accent);
+    outline: none;
+  }
+  .nav.prev { left: 6px; }
+  .nav.next { right: 6px; }
+  .dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    padding: 18px 16px 0;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #4a4742;
+    cursor: pointer;
+  }
+  .dot[aria-current="true"] { background: var(--accent); }
+  .dot:hover, .dot:focus-visible {
+    background: #cfc6b6;
+    outline: none;
+  }
+  .counter {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  footer {
+    text-align: center;
+    padding: 0 16px 24px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--accent); }
+  @media (max-width: 640px) {
+    .slide { padding: 8px 12px 0; }
+    .nav { width: 36px; height: 36px; font-size: 22px; }
+    .nav.prev { left: 2px; }
+    .nav.next { right: 2px; }
+    .slide img { max-height: 64vh; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <p class="preview-note">Preview only — not linked from the live modeling page</p>
+    <h1>Modeling photos</h1>
+  </header>
+
+  <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Modeling photos">
+    <button type="button" class="nav prev" aria-label="Previous photo">&#8249;</button>
+    <button type="button" class="nav next" aria-label="Next photo">&#8250;</button>
+    <div class="viewport">
+      <div class="track">
+        <figure class="slide"><img src="carousel/br-1a.jpg" alt="Bridal fashion show runway" width="1040" height="1512"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-1b.jpg" alt="Bridal fashion show runway" width="1040" height="1523"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-1c.jpg" alt="Bridal fashion show runway" width="1000" height="1694"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-1d.jpg" alt="Bridal fashion show runway" width="1040" height="1538"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-2a.jpg" alt="Bridal fashion show runway" width="1040" height="1523"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-2b.jpg" alt="Bridal fashion show runway" width="1040" height="1401"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-2c.jpg" alt="Bridal fashion show runway" width="1040" height="1601"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-2d.jpg" alt="Bridal fashion show runway" width="1040" height="1444"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-3a.jpg" alt="Bridal fashion show runway" width="1040" height="682"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-3b.jpg" alt="Bridal fashion show runway" width="1040" height="711"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-4a.jpg" alt="Bridal fashion show runway" width="1040" height="710"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/br-4b.jpg" alt="Bridal fashion show runway" width="1040" height="1566"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/bridal-runway-8.jpg" alt="Bridal fashion show runway" width="1040" height="1934"><figcaption>Bridal fashion show runway</figcaption></figure>
+        <figure class="slide"><img src="carousel/bridal-portrait-9.jpg" alt="Bridal photo shoot" width="1040" height="1567"><figcaption>Bridal photo shoot.</figcaption></figure>
+        <figure class="slide"><img src="carousel/mwpb-a.jpg" alt="Miss West Palm Beach 2002 and Miss Hawaiian Tropic event" width="1040" height="782"><figcaption>Miss West Palm Beach 2002 and Miss Hawaiian Tropic event</figcaption></figure>
+        <figure class="slide"><img src="carousel/mwpb-b.jpg" alt="Miss West Palm Beach 2002 and Miss Hawaiian Tropic event" width="1040" height="869"><figcaption>Miss West Palm Beach 2002 and Miss Hawaiian Tropic event</figcaption></figure>
+        <figure class="slide"><img src="carousel/mwpb-c.jpg" alt="Miss West Palm Beach 2002 and Miss Hawaiian Tropic event" width="1040" height="878"><figcaption>Miss West Palm Beach 2002 and Miss Hawaiian Tropic event</figcaption></figure>
+        <figure class="slide"><img src="carousel/mwpb-d.jpg" alt="Miss West Palm Beach 2002 and Miss Hawaiian Tropic event" width="1040" height="817"><figcaption>Miss West Palm Beach 2002 and Miss Hawaiian Tropic event</figcaption></figure>
+        <figure class="slide"><img src="carousel/holiday-1.jpg" alt="Miss Hawaiian Tropic holiday parade, West Palm Beach" width="658" height="414"><figcaption>Miss Hawaiian Tropic holiday parade, West Palm Beach.</figcaption></figure>
+        <figure class="slide"><img src="carousel/holiday-2.jpg" alt="Miss Hawaiian Tropic holiday parade, West Palm Beach" width="606" height="442"><figcaption>Miss Hawaiian Tropic holiday parade, West Palm Beach.</figcaption></figure>
+        <figure class="slide"><img src="carousel/holiday-3.jpg" alt="Miss Hawaiian Tropic holiday parade, West Palm Beach" width="686" height="472"><figcaption>Miss Hawaiian Tropic holiday parade, West Palm Beach.</figcaption></figure>
+        <figure class="slide"><img src="carousel/holiday-4.jpg" alt="Miss Hawaiian Tropic holiday parade, West Palm Beach" width="575" height="426"><figcaption>Miss Hawaiian Tropic holiday parade, West Palm Beach.</figcaption></figure>
+        <figure class="slide"><img src="carousel/radio-disney.jpg" alt="Radio Disney event" width="1040" height="1237"><figcaption>Radio Disney event</figcaption></figure>
+        <figure class="slide"><img src="carousel/ritz-1.jpg" alt="Training event at the Ritz-Carlton, Palm Beach" width="1040" height="738"><figcaption>Training event at the Ritz-Carlton, Palm Beach</figcaption></figure>
+        <figure class="slide"><img src="carousel/ritz-2.jpg" alt="Training event at the Ritz-Carlton, Palm Beach" width="1040" height="628"><figcaption>Training event at the Ritz-Carlton, Palm Beach</figcaption></figure>
+        <figure class="slide"><img src="carousel/early-model.jpg" alt="One of Rose’s first models, photographed by Rose" width="1040" height="1575"><figcaption>One of Rose’s first models, photographed by Rose</figcaption></figure>
+      </div>
+    </div>
+    <div class="dots" role="tablist" aria-label="Choose a photo"></div>
+    <span class="counter" aria-live="polite"></span>
+  </div>
+
+  <footer>
+    This is a preview of a proposed photo carousel. The live modeling page has not been changed.
+  </footer>
+
+<script>
+(function () {
+  var root = document.getElementById('carousel');
+  var track = root.querySelector('.track');
+  var viewport = root.querySelector('.viewport');
+  var slides = Array.prototype.slice.call(root.querySelectorAll('.slide'));
+  var prev = root.querySelector('.prev');
+  var next = root.querySelector('.next');
+  var dotsWrap = root.querySelector('.dots');
+  var counter = root.querySelector('.counter');
+  var N = slides.length;
+  var i = 0;
+  var timer = null;
+  var hover = false;
+  var INTERVAL = 5000;
+  var dragging = false;
+  var startX = 0;
+  var dx = 0;
+
+  for (var n = 0; n < N; n++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dot';
+      b.setAttribute('aria-label', 'Photo ' + (n + 1) + ' of ' + N);
+      b.addEventListener('click', function () { go(n, true); });
+      dotsWrap.appendChild(b);
+    })(n);
+  }
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function applyTransform(extraPx) {
+    var w = viewport.offsetWidth;
+    var x = (-i * w) + (extraPx || 0);
+    track.style.transform = 'translateX(' + x + 'px)';
+  }
+
+  function go(n, fromUser) {
+    i = (n + N) % N;
+    track.style.transition = dragging ? 'none' : 'transform 0.45s ease';
+    applyTransform(0);
+    for (var k = 0; k < N; k++) {
+      dots[k].setAttribute('aria-current', k === i ? 'true' : 'false');
+      slides[k].setAttribute('aria-hidden', k === i ? 'false' : 'true');
+    }
+    counter.textContent = (i + 1) + ' / ' + N;
+    if (fromUser) restart();
+  }
+
+  function tick() {
+    if (!hover && !document.hidden) go(i + 1);
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function start() { stop(); timer = setInterval(tick, INTERVAL); }
+  function restart() { start(); }
+
+  root.addEventListener('mouseenter', function () { hover = true; });
+  root.addEventListener('mouseleave', function () { hover = false; });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  prev.addEventListener('click', function () { go(i - 1, true); });
+  next.addEventListener('click', function () { go(i + 1, true); });
+
+  function pointerX(e) {
+    if (e.touches && e.touches.length) return e.touches[0].clientX;
+    if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0].clientX;
+    return e.clientX;
+  }
+  function onDown(e) {
+    dragging = true;
+    startX = pointerX(e);
+    dx = 0;
+    track.style.transition = 'none';
+    hover = true;
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    dx = pointerX(e) - startX;
+    applyTransform(dx);
+  }
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    hover = false;
+    track.style.transition = 'transform 0.45s ease';
+    var w = viewport.offsetWidth;
+    if (dx > Math.min(50, w * 0.15)) go(i - 1, true);
+    else if (dx < -Math.min(50, w * 0.15)) go(i + 1, true);
+    else go(i, true);
+    dx = 0;
+  }
+
+  viewport.addEventListener('touchstart', onDown, { passive: true });
+  viewport.addEventListener('touchmove', onMove, { passive: true });
+  viewport.addEventListener('touchend', onUp);
+  viewport.addEventListener('touchcancel', onUp);
+  viewport.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (e.pointerType === 'touch') return; // handled by touch events
+    onDown(e);
+    viewport.setPointerCapture(e.pointerId);
+  });
+  viewport.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    onMove(e);
+  });
+  viewport.addEventListener('pointerup', function (e) {
+    if (e.pointerType === 'touch') return;
+    onUp();
+  });
+  viewport.addEventListener('pointercancel', function (e) {
+    if (e.pointerType === 'touch') return;
+    onUp();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') go(i - 1, true);
+    if (e.key === 'ArrowRight') go(i + 1, true);
+  });
+  window.addEventListener('resize', function () { applyTransform(0); });
+
+  go(0);
+  start();
+})();
+</script>
+</body>
+</html>
