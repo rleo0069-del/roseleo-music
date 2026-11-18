@@ -62,9 +62,9 @@
     "rank": 53,
     "views": 16,
     "date": "2026-11-02",
-    "duration": "3:54",
+    "duration": "8:06",
     "cover": "assets/covers/i-m-enough-for-now.jpg",
-    "audio": "assets/audio/i-m-enough-for-now.mp3",
+    "audio": "",
     "youtube": "cRRDyOqZpTk",
     "source": "https://www.youtube.com/watch?v=cRRDyOqZpTk",
     "lyrics": ""
@@ -97,9 +97,9 @@
     "rank": 59,
     "views": 10,
     "date": "2026-10-31",
-    "duration": "5:22",
+    "duration": "10:24",
     "cover": "",
-    "audio": "assets/audio/e-s-orbit-of-ambition-elon-musk.mp3",
+    "audio": "",
     "youtube": "hIZnUurgGiE",
     "source": "https://www.youtube.com/watch?v=hIZnUurgGiE",
     "lyrics": ""
@@ -116,9 +116,9 @@
     "rank": 60,
     "views": 10,
     "date": "2026-10-29",
-    "duration": "5:19",
+    "duration": "10:24",
     "cover": "assets/covers/cyberpsychosis.jpg",
-    "audio": "assets/audio/cyberpsychosis.mp3",
+    "audio": "",
     "youtube": "rWFf50CWEz4",
     "source": "https://www.youtube.com/watch?v=rWFf50CWEz4",
     "lyrics": ""
@@ -187,9 +187,9 @@
     "rank": 70,
     "views": 2,
     "date": "2026-10-28",
-    "duration": "6:33",
+    "duration": "10:59",
     "cover": "assets/covers/x-the-everything-app-x.jpg",
-    "audio": "assets/audio/x-the-everything-app-x.mp3",
+    "audio": "",
     "youtube": "7Q52XxCHrfY",
     "source": "https://www.youtube.com/watch?v=7Q52XxCHrfY",
     "lyrics": ""
@@ -1958,7 +1958,7 @@
     "youtube": "",
     "source": "",
     "lyrics": "",
-    "genre": "Tech anthems"
+    "genre": "Free ads"
   },
   {
     "id": "43c1c185-b512-4fff-aef3-c3839fca1a50",
