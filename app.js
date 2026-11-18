@@ -17,7 +17,7 @@ let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer;
 const audio=$('#audio'),fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
 const ytId=u=>{if(!u)return'';const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u)?u:'')};
 const mode=s=>s.audio?'audio':ytId(s.youtube)?'youtube':'link';
-fetch('data/songs.json?v=20261118k').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261118l').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(!w)return;w.innerHTML='';
@@ -31,7 +31,7 @@ const SECS=[['music','#grid'],['books','#gridBooks'],['children','#gridChildren'
 function render(){const q=$('#search').value.trim().toLowerCase();
  view=songs.map((s,i)=>[s,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[0].title.localeCompare(b[0].title,undefined,{sensitivity:'base'})||a[1]-b[1]).map(x=>x[0]).filter(s=>{
   if(secOf(s)==='music'&&genre&&s.genre!==genre)return false;
-  return !q||[s.title,s.artist,s.lyrics,s.genre,s.genre2,...s.tags].join(' ').toLowerCase().includes(q)});
+  return !q||[s.title,s.subtitle,s.artist,s.lyrics,s.genre,s.genre2,...s.tags].join(' ').toLowerCase().includes(q)});
  const musicView=view.filter(s=>secOf(s)==='music'),musicTot=songs.filter(s=>secOf(s)==='music').length;
  $('#count').textContent=genre?musicView.length+' song'+(musicView.length===1?'':'s')+' in '+genre+', A–Z':(q?musicView.length+' of '+musicTot+' songs':musicTot+' songs in 7 groups, A–Z inside each');
  const html=view.map((s,i)=>{const m=mode(s),y=ytId(s.youtube);const img=s.cover||(y?`https://i.ytimg.com/vi/${y}/hqdefault.jpg`:'');
@@ -42,7 +42,7 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  return `<article class="card${songs.indexOf(s)===cur?' playing':''}" draggable="true" data-i="${i}" data-sid="${esc(s.id)}" id="song-${esc(s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}${rn}
  <button type="button" class="favbtn" data-fav="${esc(s.id)}" aria-pressed="false" aria-label="Add to My favorites" title="Add to My favorites">♥</button>
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
- <div class="body"><h3>${esc(s.title)}</h3><div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}${views}${s.blurb?' · '+esc(s.blurb):''}</div>
+ <div class="body"><h3>${esc(s.title)}</h3>${s.subtitle?`<p class="subtitle">${esc(s.subtitle)}</p>`:''}<div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}${views}${s.blurb?' · '+esc(s.blurb):''}</div>
  ${badge}${badge2}
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}"${/\.pdf(\?|#|$)/i.test(s.source)?' download':` target="_blank" rel="noopener"`}>${/\.pdf(\?|#|$)/i.test(s.source)?'Free download':(secOf(s)==='books'?'View':'Open')+' ↗'}</a>`:''}${s.article?`<a class="btn" href="${esc(s.article)}">Read the Grokapedia entry</a>`:''}${s.link?`<a class="btn" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.linkLabel||'Open')} ↗</a>`:''}
  ${s.lyrics?`<button data-ly="${i}" aria-expanded="false">Lyrics</button>`:''}</div>
@@ -58,7 +58,7 @@ SECS.forEach(([,g])=>$(g).addEventListener('click',e=>{const p=e.target.closest(
  if(l){const d=$('#ly'+l.dataset.ly),o=d.hidden;d.hidden=!o;l.setAttribute('aria-expanded',o)}}));
 function playable(){return songs.map((s,i)=>i).sort((a,b)=>rank(songs[a])-rank(songs[b])||songs[a].title.localeCompare(songs[b].title,undefined,{sensitivity:'base'})||a-b).filter(i=>mode(songs[i])!=='link')}
 function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo)yt.stopVideo();clearInterval(ytTimer)}
-function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,go);$('#pTitle').textContent=s.title;$('#pArtist').textContent=s.artist||'';
+function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,go);$('#pTitle').textContent=s.title;const sub=$('#pSub');if(sub){sub.textContent=s.subtitle||'';sub.hidden=!s.subtitle}$('#pArtist').textContent=s.artist||'';
  const y=ytId(s.youtube),img=s.cover||(y?`https://i.ytimg.com/vi/${y}/default.jpg`:'');const pc=$('#pCover');pc.hidden=!img;if(img)pc.src=img;
  $('#ytWrap').classList.toggle('on',mode(s)==='youtube');$('#player').classList.remove('closed');const pa=$('#pArt');if(pa){const sh=mode(s)==='audio'&&!!img;pa.hidden=!sh;if(sh)pa.src=img}
  if(mode(s)==='audio'){audio.src=s.audio;audio.volume=+$('#vol').value;if(go)audio.play().catch(()=>{})}

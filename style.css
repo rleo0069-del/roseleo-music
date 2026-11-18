@@ -216,3 +216,5 @@ body.favdragging{touch-action:none}
 .vetlb-stage img{display:block;max-width:100%;max-height:calc(100dvh - 56px);width:auto;height:auto;margin:0 auto;object-fit:contain;touch-action:pan-x pan-y pinch-zoom;user-select:none}
 body.vetopen{overflow:hidden}
 .album-intro{max-width:40em;margin:10px auto 4px;text-align:center;color:var(--mu);font-style:italic;font-size:.95rem;line-height:1.6}
+.body .subtitle{margin:0 0 4px;color:var(--mu);font-size:.75rem;font-style:italic;font-weight:400;line-height:1.3}
+.psub{color:var(--mu);font-size:.72rem;font-style:italic;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
