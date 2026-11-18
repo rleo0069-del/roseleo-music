@@ -1674,5 +1674,20 @@
     "youtube": "",
     "source": "",
     "lyrics": ""
+  },
+  {
+    "id": "crystal-sun",
+    "title": "Crystal Sun",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "Tech anthems",
+    "rank": "",
+    "date": "2026-11-17",
+    "duration": "6:44",
+    "cover": "assets/covers/crystal-sun.jpg",
+    "audio": "assets/audio/crystal-sun.mp3",
+    "youtube": "",
+    "source": "",
+    "lyrics": ""
   }
 ]
