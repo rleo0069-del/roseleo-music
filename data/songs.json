@@ -1704,5 +1704,20 @@
     "youtube": "",
     "source": "",
     "lyrics": ""
+  },
+  {
+    "id": "starships-mandate",
+    "title": "Starship's Mandate",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "Space theme",
+    "rank": "",
+    "date": "2026-11-18",
+    "duration": "3:32",
+    "cover": "assets/covers/starships-mandate.jpg",
+    "audio": "assets/audio/starships-mandate.mp3",
+    "youtube": "",
+    "source": "",
+    "lyrics": ""
   }
 ]
