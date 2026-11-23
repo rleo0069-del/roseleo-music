@@ -126,8 +126,8 @@ function vsize(){const d=devicePixelRatio||1,r=vc.getBoundingClientRect();vc.wid
 addEventListener('resize',vsize);vsize();
 function viz(t){vraf=0;const w=vc.width,h=vc.height;if(!w||!h){vsize()}
  const tgt=playing?.55+.45*Math.abs(Math.sin(t/240))*(.6+.4*Math.sin(t/1700)):0;energy+=(tgt-energy)*.12;ph+=playing&&!still?.08:0;
- vx.clearRect(0,0,w,h);const g=vx.createLinearGradient(0,0,w,0);g.addColorStop(0,'#38bdf8');g.addColorStop(.5,'#a78bfa');g.addColorStop(1,'#f472b6');
- vx.lineWidth=2*(devicePixelRatio||1);vx.strokeStyle=g;vx.shadowColor='#38bdf8';vx.shadowBlur=8;
+ vx.clearRect(0,0,w,h);const g=vx.createLinearGradient(0,0,w,0);g.addColorStop(0,'#3b82f6');g.addColorStop(.5,'#d4af37');g.addColorStop(1,'#3b82f6');
+ vx.lineWidth=2*(devicePixelRatio||1);vx.strokeStyle=g;vx.shadowColor='#3b82f6';vx.shadowBlur=8;
  for(let k=0;k<2;k++){vx.globalAlpha=k?.35:1;vx.beginPath();for(let x=0;x<=w;x+=4){const u=x/w,a=(still?.25:energy)*h*.38*(k?.6:1);
   const y=h/2+a*Math.sin(u*18+ph*(k?1.3:1))*Math.sin(u*3.1+ph*.2)+a*.35*Math.sin(u*47-ph*2);x?vx.lineTo(x,y):vx.moveTo(x,y)}vx.stroke()}
  vx.globalAlpha=1;vx.shadowBlur=0;
