@@ -157,8 +157,16 @@ body{background:radial-gradient(ellipse at 20% -10%,#0d2350 0%,var(--bg) 55%);fo
 .procl.compact .ph{margin-bottom:6px}
 
 /* Free Ads in the dashboard column */
-.panel.ads{padding:12px 14px}
-.panel.ads .adgrid{margin-top:8px}
+.ads-col,
+.panel.ads{
+  --ad-card-pad:8px;
+  --ad-card-gap:12px;
+  --ad-panel-pad:10px;
+  --ad-frame-gap:6px;
+  --ad-meta-gap:4px;
+}
+.panel.ads{padding:var(--ad-panel-pad)}
+.panel.ads .adgrid{margin-top:var(--ad-frame-gap)}
 .sblaunch{margin:8px 0 12px;text-align:center}
 .sblib{display:block;margin:0 auto 8px;max-width:260px}
 .sblaunch-img{display:block;margin:0 auto 8px;max-width:100%}
@@ -389,19 +397,24 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
 .ccol{grid-area:ccol}
 .ads-col{grid-area:ads;min-width:0}
 
-.ads-col .panel.ads{padding:12px 14px}
-.adgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:8px;align-items:stretch}
-.adcard{height:448px;display:flex;flex-direction:column;min-width:0}
-.adcard .body{display:flex;flex-direction:column;height:100%;padding:10px 12px 12px;box-sizing:border-box}
-.adcard .body h3{flex:none;font-size:.85rem;line-height:1.25;min-height:2.5em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0}
-.adcard button.ad-frame,.card button.ad-frame{flex:none;position:relative;display:block;width:100%;aspect-ratio:16/10;margin:8px 0;padding:0;border:1px solid var(--ln);border-radius:10px;background:#000;overflow:hidden;cursor:zoom-in;color:inherit;font:inherit}
+.ads-col .panel.ads{padding:var(--ad-panel-pad)}
+.adgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--ad-card-gap);margin-top:var(--ad-frame-gap);align-items:stretch}
+.adcard{height:auto;display:flex;flex-direction:column;min-width:0}
+.adcard .body{display:flex;flex-direction:column;height:auto;padding:var(--ad-card-pad);box-sizing:border-box}
+.adcard .body h3{flex:none;font-size:.85rem;line-height:1.25;min-height:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0}
+.adcard button.ad-frame,.card button.ad-frame{flex:none;position:relative;display:block;width:100%;aspect-ratio:16/10;margin:var(--ad-frame-gap) 0;padding:0;border:1px solid var(--ln);border-radius:10px;background:#000;overflow:hidden;cursor:zoom-in;color:inherit;font:inherit}
 .ad-frame img,.ad-frame video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
-.ad-zoom{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;font-size:.68rem;color:#ddd;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
+.ad-zoom{position:absolute;left:0;right:0;bottom:0;padding:12px 8px 4px;font-size:.68rem;color:#ddd;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
 .ad-frame:hover .ad-zoom,.ad-frame:focus-visible .ad-zoom{color:#fff}
 .ad-frame:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.adcard .meta{flex:1;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.adcard .meta{flex:none;margin:0 0 var(--ad-meta-gap);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.adcard .ad-blurb{display:flex;align-items:center;gap:8px;flex:none;min-width:0;margin:0 0 var(--ad-meta-gap)}
+.adcard .ad-blurb .meta{flex:1;min-width:0;margin:0}
+.adcard .sblib-logo{flex:none;display:block;height:30px;width:auto;margin:0;line-height:0;border-radius:5px;overflow:hidden;background:#f3efe6}
+.adcard .sblib-logo img{display:block;height:30px;width:auto;border-radius:5px}
+.adcard .sblib-logo:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .adcard .row{margin-top:auto}
-.ad-contact{margin:6px 0 0;font-size:.72rem;line-height:1.4;color:var(--mu)}
+.ad-contact{margin:var(--ad-meta-gap) 0 0;font-size:.72rem;line-height:1.4;color:var(--mu)}
 .ad-contact a{color:var(--acc2);text-decoration:none}
 .ad-contact a:hover,.ad-contact a:focus-visible{text-decoration:underline}
 .adcard .btn.ad-open{background:#1d1840;color:var(--tx);border:1px solid #3a3366;border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.85rem}
