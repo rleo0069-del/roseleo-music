@@ -1,5 +1,33 @@
 [
   {
+    "id": "bubbling-under-my-frontal-lobes",
+    "title": "Bubbling under my frontal lobes",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "More",
+    "rank": "",
+    "date": "2026-11-22",
+    "duration": "6:43",
+    "cover": "assets/covers/bubbling-under-my-frontal-lobes.jpg",
+    "audio": "assets/audio/bubbling-under-my-frontal-lobes.mp3",
+    "youtube": "",
+    "source": ""
+  },
+  {
+    "id": "it-was-the-smartest-and-dumbest-of-times",
+    "title": "It was the smartest and dumbest of times",
+    "artist": "Rose Marie Leo",
+    "tags": [],
+    "genre": "Romantic",
+    "rank": "",
+    "date": "2026-11-22",
+    "duration": "4:27",
+    "cover": "assets/covers/it-was-the-smartest-and-dumbest-of-times.jpg",
+    "audio": "assets/audio/it-was-the-smartest-and-dumbest-of-times.mp3",
+    "youtube": "",
+    "source": ""
+  },
+  {
     "id": "k3",
     "title": "K3",
     "artist": "Rose Leo",
@@ -228,7 +256,8 @@
     "audio": "",
     "youtube": "N19z1GUondA",
     "source": "https://www.youtube.com/watch?v=N19z1GUondA",
-    "lyrics": ""
+    "lyrics": "",
+    "section": "books"
   },
   {
     "id": "LLh_GW2pNCE",
