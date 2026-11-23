@@ -23,7 +23,7 @@ function addSlugs(list){const used=new Set();list.forEach(s=>{let sl=slugify(s.t
 const songHash=s=>'#song-'+(s.slug||s.id);
 function songUrl(s){const path=location.pathname.replace(/index\.html$/,'').replace(/\/?$/,'/');return location.origin+path+songHash(s)}
 function findSongRef(ref){if(!ref)return-1;let r=ref;try{r=decodeURIComponent(ref)}catch(e){}return songs.findIndex(s=>s.slug===r||String(s.id)===r)}
-fetch('data/songs.json?v=20261122d').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261122d').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(w){w.innerHTML='';w.hidden=true}}
@@ -40,7 +40,7 @@ function render(){const q=$('#search').value.trim().toLowerCase();
  const rn=s.rank?`<span class="rn" data-rank="${+s.rank}">${+s.rank}</span>`:'';
  const views=s.views!=null?' · '+Number(s.views).toLocaleString()+' views':'';
  return `<article class="card${songs.indexOf(s)===cur?' playing':''}" draggable="true" data-i="${i}" data-sid="${esc(s.id)}" data-slug="${esc(s.slug||s.id)}" id="song-${esc(s.slug||s.id)}"><div class="cover">${esc(s.title).slice(0,2)}${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}${rn}
- <button type="button" class="favbtn" data-fav="${esc(s.id)}" aria-pressed="false" aria-label="Add to My favorites" title="Add to My favorites">♥</button>
+ 
  ${m==='link'?'':`<button class="pbtn" data-play="${i}" aria-label="Play ${esc(s.title)}">▶</button>`}</div>
  <div class="body"><h3>${esc(s.title)}</h3>${s.subtitle?`<p class="subtitle">${esc(s.subtitle)}</p>`:''}<div class="meta">${esc(s.artist||'')}${s.duration?' · '+esc(s.duration):''}${s.date?' · '+esc(s.date):''}${views}${s.blurb?' · '+esc(s.blurb):''}</div>
  <div class="row">${m==='link'&&s.source?`<a class="btn" href="${esc(s.source)}"${/\.pdf(\?|#|$)/i.test(s.source)?' download':` target="_blank" rel="noopener"`}>${/\.pdf(\?|#|$)/i.test(s.source)?'Free download':(secOf(s)==='books'?'View':'Open')+' ↗'}</a>`:''}${s.article?`<a class="btn" href="${esc(s.article)}">Read the Grokapedia entry</a>`:''}${s.link?`<a class="btn" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.linkLabel||'Open')} ↗</a>`:''}
@@ -104,7 +104,7 @@ function dashInit(){$('#songN').textContent=songs.length;$('#secTot').textConten
  const n={music:0,books:0,children:0,games:0};songs.forEach(s=>n[secOf(s)]++);
  document.querySelectorAll('[data-sc]').forEach(b=>b.textContent=n[b.dataset.sc]);
  const nm={music:'Music',books:'Books and things',children:'Children’s Music',games:'Games / Extras songs'};
- $('#secList').innerHTML=Object.keys(n).map(k=>`<li><a href="#${k==='games'?'extras':k}"><i></i>${nm[k]}</a><span class="bar"><span style="width:${Math.round(n[k]/songs.length*100)}%"></span></span><b>${n[k]}</b></li>`).join('');
+ $('#secList').innerHTML=Object.keys(n).map(k=>`<li><a href="#${k}"><i></i>${nm[k]}</a><span class="bar"><span style="width:${Math.round(n[k]/songs.length*100)}%"></span></span><b>${n[k]}</b></li>`).join('');
  $('#latest').innerHTML=songs.slice(0,5).map(s=>`<li><a href="${songHash(s)}">${esc(s.title)}</a>${s.date?` <small>${esc(s.date)}</small>`:''}</li>`).join('');
  showStats()}
 function showStats(){$('#plays').textContent=plays.toLocaleString();let l='';try{l=localStorage.getItem('rl_last')||''}catch(e){}$('#lastPlayed').textContent=l||'—'}
@@ -134,6 +134,15 @@ function viz(t){vraf=0;const w=vc.width,h=vc.height;if(!w||!h){vsize()}
 
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&playing&&!vraf)vraf=requestAnimationFrame(viz)});
 vraf=requestAnimationFrame(viz);
+
+
+const SITES=[{title:'Bored.com',url:'https://www.bored.com/',blurb:'A collection of fun and interesting websites to explore.'}];
+function sitesInit(){
+  const list=$('#siteList');if(!list)return;
+  const draw=arr=>{if(!Array.isArray(arr)||!arr.length)return;
+    list.innerHTML=arr.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.blurb?`<span>${esc(s.blurb)}</span>`:''}</li>`).join('')}
+  draw(SITES);
+  fetch('data/sites.json?v=20261122e').then(r=>r.ok?r.json():null).then(d=>{if(d)draw(d)}).catch(()=>{})}
 
 const FAV_KEY='rl_favs',FAV_MAX=5;let favs=[];
 const coverOf=s=>{const y=ytId(s.youtube);return asset(s.cover)||(y?`https://i.ytimg.com/vi/${y}/default.jpg`:'')};
