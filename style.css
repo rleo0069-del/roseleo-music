@@ -408,10 +408,12 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
 .ad-frame:hover .ad-zoom,.ad-frame:focus-visible .ad-zoom{color:#fff}
 .ad-frame:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .adcard .meta{flex:none;margin:0 0 var(--ad-meta-gap);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.adcard .ad-blurb{display:flex;align-items:center;gap:8px;flex:none;min-width:0;margin:0 0 var(--ad-meta-gap)}
-.adcard .ad-blurb .meta{flex:1;min-width:0;margin:0}
-.adcard .sblib-logo{flex:none;display:block;height:30px;width:auto;margin:0;line-height:0;border-radius:5px;overflow:hidden;background:#f3efe6}
-.adcard .sblib-logo img{display:block;height:30px;width:auto;border-radius:5px}
+.adcard .ad-lower{display:grid;grid-template-columns:minmax(178px,1fr) minmax(0,1fr);align-items:stretch;gap:8px;flex:none;min-width:0}
+.adcard .ad-lower-text{min-width:0}
+.adcard .ad-lower-text .meta{margin:0 0 var(--ad-meta-gap)}
+.adcard .ad-lower-text .row{margin-top:0}
+.adcard .sblib-logo{display:flex;align-items:center;justify-content:center;min-width:0;margin:0;border-radius:6px;overflow:hidden;background:#f3efe6}
+.adcard .sblib-logo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:0}
 .adcard .sblib-logo:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .adcard .row{margin-top:auto}
 .ad-contact{margin:var(--ad-meta-gap) 0 0;font-size:.72rem;line-height:1.4;color:var(--mu)}
