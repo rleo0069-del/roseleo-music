@@ -366,3 +366,17 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
 @media(max-width:520px){#grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
 .card .row .copylink{font-size:.75rem;padding:4px 9px}
 .card .row .copylink.copied{border-color:var(--gold);color:var(--gold)}
+
+
+/* Interesting sites + Games / Extras in the left column */
+#sites,#extras,#arcade,#games{scroll-margin-top:24px}
+.sites .ph h2{letter-spacing:.08em;line-height:1.35}
+.sitelist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sitelist li{display:flex;flex-direction:column;gap:2px;padding:6px 8px;border:1px solid var(--ln);border-radius:8px;background:rgba(0,0,0,.4);min-width:0}
+.sitelist a{color:var(--tx);text-decoration:none;font-weight:600;font-size:.85rem}
+.sitelist a:hover,.sitelist a:focus-visible{color:#fff}
+.sitelist span{color:var(--mu);font-size:.72rem;line-height:1.35}
+.lcol #extras .xgrid{grid-template-columns:1fr;gap:8px}
+.lcol #extras .sub{text-align:left;margin:0 0 10px;color:var(--mu);font-size:.78rem}
+.lcol .agames{grid-template-columns:1fr}
+.lcol #arcade{margin-top:12px}
