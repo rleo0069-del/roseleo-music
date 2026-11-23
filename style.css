@@ -353,3 +353,16 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
   .oom-logo{display:none!important}
   .oom-logo-poster{display:block}
 }
+
+
+/* Music catalog: one A–Z list, about 5 cards per row */
+#music .tags{display:none!important}
+#grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+#grid .card .body{padding:6px 8px 8px}
+#grid .card .body h3{font-size:.8rem}
+#grid .cover .pbtn{width:32px;height:32px;font-size:1rem}
+@media(max-width:1100px){#grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:800px){#grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){#grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+.card .row .copylink{font-size:.75rem;padding:4px 9px}
+.card .row .copylink.copied{border-color:var(--gold);color:var(--gold)}
