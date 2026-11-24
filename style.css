@@ -425,6 +425,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
 .ad-contact a{color:var(--acc2);text-decoration:none}
 .ad-contact a:hover,.ad-contact a:focus-visible{text-decoration:underline}
 .adcard .btn.ad-open{background:#1d1840;color:var(--tx);border:1px solid #3a3366;border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+.ad-frame .starlink-mark{position:absolute;top:8px;left:0;right:0;text-align:center;font:600 .78rem Inter,system-ui,sans-serif;letter-spacing:.32em;text-indent:.32em;color:#fff;text-transform:uppercase;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.ad-fine{margin:var(--ad-meta-gap) 0 0;font-size:.62rem;line-height:1.35;color:var(--mu)}
 
 @media(min-width:1500px){
   .dgrid{grid-template-columns:minmax(250px,300px) minmax(0,1fr) 300px;grid-template-areas:"lcol ccol ads"}
