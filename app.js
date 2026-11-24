@@ -40,7 +40,7 @@ const songHash=s=>'#song-'+(s.slug||s.id);
 const SHARE_BASE='https://odysseyofmusic.com/song/';
 function songUrl(s){return SHARE_BASE+encodeURIComponent(s.slug||s.id)+'/'}
 function findSongRef(ref){if(!ref)return-1;let r=ref;try{r=decodeURIComponent(ref)}catch(e){}return songs.findIndex(s=>s.slug===r||String(s.id)===r)}
-fetch('data/songs.json?v=20261123m').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261123n').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(w){w.innerHTML='';w.hidden=true}}
