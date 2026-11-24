@@ -1,15 +1,15 @@
 {
  "version": "1.0",
  "type": "video",
- "title": "A STORM OF CYBERCABS",
+ "title": "STORM OF CYBERCABS",
  "author_name": "Rose Marie Leo",
  "author_url": "https://odysseyofmusic.com/",
  "provider_name": "Odyssey of Music",
  "provider_url": "https://odysseyofmusic.com/",
- "thumbnail_url": "https://odysseyofmusic.com/assets/share/a-storm-of-cybercabs.jpg?v=4d94686a11",
+ "thumbnail_url": "https://odysseyofmusic.com/assets/share/a-storm-of-cybercabs.jpg?v=1809bbda16",
  "thumbnail_width": 1200,
  "thumbnail_height": 630,
  "width": 560,
  "height": 315,
- "html": "<iframe src=\"https://odysseyofmusic.com/embed/a-storm-of-cybercabs/\" width=\"560\" height=\"315\" title=\"A STORM OF CYBERCABS\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
+ "html": "<iframe src=\"https://odysseyofmusic.com/embed/a-storm-of-cybercabs/\" width=\"560\" height=\"315\" title=\"STORM OF CYBERCABS\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
 }

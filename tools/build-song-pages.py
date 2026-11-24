@@ -103,9 +103,9 @@ def description(s):
     if s.get('duration'): bits.append(s['duration'])
     tail = 'Read on Odyssey of Music' if mode(s) == 'link' else 'Listen on Odyssey of Music'
     standard = ' · '.join(bits) + ' · ' + tail
-    # Superposition keeps a long collab credit in subtitle, not in the title;
-    # use that credit as the share-card description.
-    if (s.get('title') or '').strip() == 'Superposition' and (s.get('subtitle') or '').strip():
+    # When a long title was shortened, the subtitle holds the rest / original name
+    # and is used as the share-card description.
+    if (s.get('subtitle') or '').strip():
         return s['subtitle'].strip()
     return standard
 

@@ -1,7 +1,9 @@
 [
   {
     "id": "bubbling-under-my-frontal-lobes",
-    "title": "Bubbling under my frontal lobes",
+    "title": "Bubbling Under",
+    "subtitle": "Bubbling under my frontal lobes",
+    "slug": "bubbling-under-my-frontal-lobes",
     "artist": "Rose Marie Leo",
     "tags": [],
     "genre": "More",
@@ -15,7 +17,9 @@
   },
   {
     "id": "it-was-the-smartest-and-dumbest-of-times",
-    "title": "It was the smartest and dumbest of times",
+    "title": "Smartest and Dumbest",
+    "subtitle": "It was the smartest and dumbest of times",
+    "slug": "it-was-the-smartest-and-dumbest-of-times",
     "artist": "Rose Marie Leo",
     "tags": [],
     "genre": "Romantic",
@@ -46,7 +50,9 @@
   },
   {
     "id": "e7821f6f-a2ec-4c96-a16c-494f91cdb231",
-    "title": "A Storm of TESLA Cybercabs",
+    "title": "TESLA Cybercabs",
+    "subtitle": "A Storm of TESLA Cybercabs",
+    "slug": "a-storm-of-tesla-cybercabs",
     "artist": "Rose Leo",
     "tags": [
       "aimusicgen"
@@ -81,7 +87,9 @@
   },
   {
     "id": "cRRDyOqZpTk",
-    "title": "I'm Enough for now",
+    "title": "I'm Enough",
+    "subtitle": "for now",
+    "slug": "im-enough-for-now",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -99,7 +107,9 @@
   },
   {
     "id": "sYP80oOEHuU",
-    "title": "The Last Tick Book",
+    "title": "Last Tick Book",
+    "subtitle": "The Last Tick Book",
+    "slug": "the-last-tick-book",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -115,7 +125,9 @@
   },
   {
     "id": "hIZnUurgGiE",
-    "title": "\"E's Orbit of Ambition\"  Elon Musk",
+    "title": "E's Orbit",
+    "subtitle": "\"E's Orbit of Ambition\"  Elon Musk",
+    "slug": "es-orbit-of-ambition-elon-musk",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -153,7 +165,9 @@
   },
   {
     "id": "i-dig-you-prufrock",
-    "title": "I dig you Prufrock",
+    "title": "I dig you",
+    "subtitle": "I dig you Prufrock · Prufrock My SAND WORM",
+    "slug": "i-dig-you-prufrock",
     "artist": "Rose Marie Leo",
     "tags": [],
     "rank": "",
@@ -166,12 +180,13 @@
     "genre": "Tech anthems",
     "lyrics": "",
     "link": "https://www.boringcompany.com/prufrock",
-    "linkLabel": "The Boring Company · Prufrock",
-    "subtitle": "Prufrock My SAND WORM"
+    "linkLabel": "The Boring Company · Prufrock"
   },
   {
     "id": "7A6_g5mq-Qs",
-    "title": "I want your giblets",
+    "title": "Your Giblets",
+    "subtitle": "I want your giblets",
+    "slug": "i-want-your-giblets",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -224,7 +239,9 @@
   },
   {
     "id": "7Q52XxCHrfY",
-    "title": "X the everything app ~ X~",
+    "title": "Everything App",
+    "subtitle": "X the everything app ~ X~",
+    "slug": "x-the-everything-app-x",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -242,7 +259,9 @@
   },
   {
     "id": "N19z1GUondA",
-    "title": "2026 Halloween Headless horseman story",
+    "title": "Headless Horseman",
+    "subtitle": "2026 Halloween Headless horseman story",
+    "slug": "2026-halloween-headless-horseman-story",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -279,7 +298,9 @@
   },
   {
     "id": "qnsH3NEbcDw",
-    "title": "K3 or bust baby",
+    "title": "K3 or Bust",
+    "subtitle": "K3 or bust baby",
+    "slug": "k3-or-bust-baby",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -316,7 +337,9 @@
   },
   {
     "id": "K7_YP3D7uNk",
-    "title": "Grok for Dummies Virtual Book",
+    "title": "Grok for Dummies",
+    "subtitle": "Grok for Dummies Virtual Book",
+    "slug": "grok-for-dummies-virtual-book",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -332,7 +355,9 @@
   },
   {
     "id": "-37sSUMxo9A",
-    "title": "A STORM OF CYBERCABS",
+    "title": "STORM OF CYBERCABS",
+    "subtitle": "A STORM OF CYBERCABS",
+    "slug": "a-storm-of-cybercabs",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -424,7 +449,9 @@
   },
   {
     "id": "rNHMKe1QuT8",
-    "title": "Physics and fuzzy dark matter",
+    "title": "Fuzzy Dark Matter",
+    "subtitle": "Physics and fuzzy dark matter",
+    "slug": "physics-and-fuzzy-dark-matter",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -460,7 +487,9 @@
   },
   {
     "id": "6pvLCrFRyAk",
-    "title": "My Grok by Xai",
+    "title": "Grok by Xai",
+    "subtitle": "My Grok by Xai",
+    "slug": "my-grok-by-xai",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -478,7 +507,9 @@
   },
   {
     "id": "O7JATfzNKWw",
-    "title": "The Dance of 2 Lovers",
+    "title": "Dance of Lovers",
+    "subtitle": "The Dance of 2 Lovers",
+    "slug": "the-dance-of-2-lovers",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -514,7 +545,9 @@
   },
   {
     "id": "osq7elSmEZ0",
-    "title": "GROK CAN DO IT!",
+    "title": "GROK CAN DO",
+    "subtitle": "GROK CAN DO IT!",
+    "slug": "grok-can-do-it",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -569,7 +602,9 @@
   },
   {
     "id": "0Wz17KhL4hM",
-    "title": "Moon's Pull for a Yacht Party",
+    "title": "Moon's Pull",
+    "subtitle": "Moon's Pull for a Yacht Party",
+    "slug": "moons-pull-for-a-yacht-party",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -623,7 +658,9 @@
   },
   {
     "id": "ir2xbpqq8nM",
-    "title": "In A Flash we danced",
+    "title": "In A Flash",
+    "subtitle": "In A Flash we danced",
+    "slug": "in-a-flash-we-danced",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -696,7 +733,9 @@
   },
   {
     "id": "-vWddZVJiDw",
-    "title": "Burn for the Stars",
+    "title": "Burn for Stars",
+    "subtitle": "Burn for the Stars",
+    "slug": "burn-for-the-stars",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -732,7 +771,9 @@
   },
   {
     "id": "pylzOHdr3u4",
-    "title": "Selene Moon of the Earth",
+    "title": "Selene Moon",
+    "subtitle": "Selene Moon of the Earth",
+    "slug": "selene-moon-of-the-earth",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -802,7 +843,9 @@
   },
   {
     "id": "Pj8tTlDapOc",
-    "title": "Ad Astra Per Aspera",
+    "title": "Ad Astra",
+    "subtitle": "Ad Astra Per Aspera",
+    "slug": "ad-astra-per-aspera",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -820,7 +863,9 @@
   },
   {
     "id": "HHb58XJywtE",
-    "title": "BIG HAPPY ADVENTURE SONG",
+    "title": "BIG HAPPY ADVENTURE",
+    "subtitle": "BIG HAPPY ADVENTURE SONG",
+    "slug": "big-happy-adventure-song",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -906,7 +951,9 @@
   },
   {
     "id": "RaXsMydY3F4",
-    "title": "Don't cut your balls off",
+    "title": "Don't Cut",
+    "subtitle": "Don't cut your balls off",
+    "slug": "dont-cut-your-balls-off",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -940,7 +987,9 @@
   },
   {
     "id": "zsiqiXUd4C0",
-    "title": "Teach children about music",
+    "title": "Teach Children",
+    "subtitle": "Teach children about music",
+    "slug": "teach-children-about-music",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1028,7 +1077,9 @@
   },
   {
     "id": "C-R1Y5qE_hs",
-    "title": "Orbital March of the Ten Thousand",
+    "title": "Orbital March",
+    "subtitle": "Orbital March of the Ten Thousand",
+    "slug": "orbital-march-of-the-ten-thousand",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1119,7 +1170,9 @@
   },
   {
     "id": "UZd_pMrb7iU",
-    "title": "Galactic Compute-Kardashev Type II",
+    "title": "Galactic Compute",
+    "subtitle": "Galactic Compute-Kardashev Type II",
+    "slug": "galactic-compute-kardashev-type-ii",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1138,7 +1191,9 @@
   },
   {
     "id": "UKVhVyxsmRg",
-    "title": "Crimson Echoes (Little Red Dots)",
+    "title": "Crimson Echoes",
+    "subtitle": "Little Red Dots",
+    "slug": "crimson-echoes-little-red-dots",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1174,7 +1229,9 @@
   },
   {
     "id": "vouabXN_Gts",
-    "title": "Optimus will do that #tesla",
+    "title": "Optimus Will",
+    "subtitle": "Optimus will do that #tesla",
+    "slug": "optimus-will-do-that-tesla",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1192,7 +1249,9 @@
   },
   {
     "id": "lS-_foGHfA0",
-    "title": "No Escaping That ~ Entropy",
+    "title": "No Escaping That",
+    "subtitle": "Entropy",
+    "slug": "no-escaping-that-entropy",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1321,7 +1380,9 @@
   },
   {
     "id": "jA1YbtD-gkg",
-    "title": "Mr Crabs bucket game for all ages",
+    "title": "Mr Crabs",
+    "subtitle": "Mr Crabs bucket game for all ages",
+    "slug": "mr-crabs-bucket-game-for-all-ages",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1337,7 +1398,9 @@
   },
   {
     "id": "wsONoFuK70A",
-    "title": "Starship ~ Universe Calls",
+    "title": "Universe Calls",
+    "subtitle": "Starship ~ Universe Calls",
+    "slug": "starship-universe-calls",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1394,7 +1457,9 @@
   },
   {
     "id": "3Hws8LTDbAM",
-    "title": "HOW TO WIN MODELING CONTRACTS",
+    "title": "HOW TO WIN",
+    "subtitle": "HOW TO WIN MODELING CONTRACTS",
+    "slug": "how-to-win-modeling-contracts",
     "artist": "Rose Marie Leo",
     "tags": [
       "book"
@@ -1426,7 +1491,9 @@
   },
   {
     "id": "lUKcc4gjr6o",
-    "title": "#MARS #DTTV #Documentaries #elonmusk #spaceX  https://youtu.be/VhAmDb2vIxw",
+    "title": "MARS",
+    "subtitle": "#MARS #DTTV #Documentaries #elonmusk #spaceX  https://youtu.be/VhAmDb2vIxw",
+    "slug": "mars-dttv-documentaries-elonmusk-spacex-https-youtu-be-vhamdb2vixw",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1442,7 +1509,9 @@
   },
   {
     "id": "hXusTHWrAkw",
-    "title": "Rose says hello to the internet world",
+    "title": "Rose Says Hello",
+    "subtitle": "Rose says hello to the internet world",
+    "slug": "rose-says-hello-to-the-internet-world",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1460,7 +1529,9 @@
   },
   {
     "id": "d34EzmCK2Gs",
-    "title": "Sleep tonight and dream",
+    "title": "Sleep Tonight",
+    "subtitle": "Sleep tonight and dream",
+    "slug": "sleep-tonight-and-dream",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1476,7 +1547,9 @@
   },
   {
     "id": "Fr5UuYEHK4E",
-    "title": "E is for everything ELON MUSK",
+    "title": "E for Everything",
+    "subtitle": "E is for everything ELON MUSK",
+    "slug": "e-is-for-everything-elon-musk",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1526,7 +1599,9 @@
   },
   {
     "id": "qLZ3sft6-VM",
-    "title": "#spacex  is for humanity",
+    "title": "SpaceX",
+    "subtitle": "#spacex  is for humanity",
+    "slug": "spacex-is-for-humanity",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1558,7 +1633,9 @@
   },
   {
     "id": "d8FTmElWYVk",
-    "title": "Clash of Steel and Sorcery",
+    "title": "Steel and Sorcery",
+    "subtitle": "Clash of Steel and Sorcery",
+    "slug": "clash-of-steel-and-sorcery",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1574,7 +1651,9 @@
   },
   {
     "id": "K-mmawYVv1o",
-    "title": "TO THINK IS HUMAN",
+    "title": "Think Is Human",
+    "subtitle": "TO THINK IS HUMAN",
+    "slug": "to-think-is-human",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1590,7 +1669,9 @@
   },
   {
     "id": "2IWMwBSaKV4",
-    "title": "HE IS DOING IT",
+    "title": "HE IS DOING",
+    "subtitle": "HE IS DOING IT",
+    "slug": "he-is-doing-it",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1626,7 +1707,9 @@
   },
   {
     "id": "HE5OXuXDtbc",
-    "title": "My AVI DJ  #remix",
+    "title": "My AVI DJ",
+    "subtitle": "#remix",
+    "slug": "my-avi-dj-remix",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1678,9 +1761,11 @@
   },
   {
     "id": "qBH7RIBObf4",
-    "title": "Claudia~ Who Put Your Beliefs in Your Head",
+    "title": "VEX",
+    "subtitle": "Who Put Your Beliefs in Your Head",
+    "slug": "claudia-who-put-your-beliefs-in-your-head",
     "titleStrike": "Claudia",
-    "titlePlain": "VEX ~ Who Put Your Beliefs in Your Head",
+    "titlePlain": "VEX",
     "artist": "Rose Marie Leo",
     "tags": [
       "youtube"
@@ -1788,7 +1873,9 @@
   },
   {
     "id": "7b725a15-7c56-4b02-878d-251e95c61edf",
-    "title": "SLOP CORE I WANT MORE",
+    "title": "I WANT MORE",
+    "subtitle": "SLOP CORE I WANT MORE",
+    "slug": "slop-core-i-want-more",
     "artist": "Rose Marie Leo",
     "tags": [],
     "rank": "",
@@ -1803,7 +1890,9 @@
   },
   {
     "id": "999abc47-3b4c-465f-bcd1-e46302eb4410",
-    "title": "Slop core Super Sexy",
+    "title": "Super Sexy",
+    "subtitle": "Slop core Super Sexy",
+    "slug": "slop-core-super-sexy",
     "artist": "Rose Marie Leo",
     "tags": [],
     "rank": "",
@@ -1818,7 +1907,9 @@
   },
   {
     "id": "8ecfb5e1-2092-4aba-a6d8-8a371dbf49fd",
-    "title": "1-833-G E T- X A D S",
+    "title": "1-833-GET-X-ADS",
+    "subtitle": "1-833-G E T- X A D S",
+    "slug": "1-833-g-e-t-x-a-d-s",
     "artist": "Rose Marie Leo",
     "tags": [],
     "rank": "",
@@ -1849,7 +1940,9 @@
   },
   {
     "id": "52f1e677-acba-464d-b0c5-18a6f73f669c",
-    "title": "Super Model Runway Ghosts",
+    "title": "Runway Ghosts",
+    "subtitle": "Super Model Runway Ghosts",
+    "slug": "super-model-runway-ghosts",
     "artist": "Rose Marie Leo",
     "tags": [],
     "rank": "",
@@ -1879,7 +1972,9 @@
   },
   {
     "id": "everyone-is-a-friend-when-the-chips-are-up",
-    "title": "Everyone Is a Friend - When the Chips Are Up",
+    "title": "Everyone's a Friend",
+    "subtitle": "Everyone Is a Friend - When the Chips Are Up",
+    "slug": "everyone-is-a-friend-when-the-chips-are-up",
     "artist": "Rose Marie Leo",
     "tags": [],
     "genre": "More",
