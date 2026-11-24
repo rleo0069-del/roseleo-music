@@ -547,7 +547,7 @@ def main():
         f'  <url><loc>{SITE}/song/{s["slug"]}/</loc>' + (f'<lastmod>{s["date"]}</lastmod>' if re.fullmatch(r'\d{4}-\d{2}-\d{2}', s.get('date') or '') else '') + '</url>'
         for s in sorted(live, key=lambda s: plain_title(s).lower())]
     write_if_changed('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(urls) + '\n</urlset>\n', changed, check)
-    write_if_changed('robots.txt', f'User-agent: *\nAllow: /\nDisallow: /embed/\n\nSitemap: {SITE}/sitemap.xml\n', changed, check)
+    write_if_changed('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n', changed, check)
     if not check:
         open(MANIFEST, 'w').write(json.dumps(new_manifest, indent=1, sort_keys=True) + '\n')
     print(f'{len(live)} songs · {len(changed)} file(s) {"out of date" if check else "updated"}')
