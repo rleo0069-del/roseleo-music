@@ -1,15 +1,15 @@
 {
  "version": "1.0",
  "type": "video",
- "title": "My Grok by Xai",
+ "title": "Grok by Xai",
  "author_name": "Rose Marie Leo",
  "author_url": "https://odysseyofmusic.com/",
  "provider_name": "Odyssey of Music",
  "provider_url": "https://odysseyofmusic.com/",
- "thumbnail_url": "https://odysseyofmusic.com/assets/share/my-grok-by-xai.jpg?v=0590ffeff1",
+ "thumbnail_url": "https://odysseyofmusic.com/assets/share/my-grok-by-xai.jpg?v=14855b8df3",
  "thumbnail_width": 1200,
  "thumbnail_height": 630,
  "width": 560,
  "height": 315,
- "html": "<iframe src=\"https://odysseyofmusic.com/embed/my-grok-by-xai/\" width=\"560\" height=\"315\" title=\"My Grok by Xai\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
+ "html": "<iframe src=\"https://odysseyofmusic.com/embed/my-grok-by-xai/\" width=\"560\" height=\"315\" title=\"Grok by Xai\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
 }
