@@ -45,7 +45,8 @@ def slugify(t):
 def add_slugs(songs):
     used = set()
     for s in songs:
-        base = sl = slugify(s.get('title')); n = 2
+        preset = (s.get('slug') or '').strip()
+        base = sl = preset or slugify(s.get('title')); n = 2
         while sl in used:
             sl = f'{base}-{n}'; n += 1
         used.add(sl); s['slug'] = sl
@@ -101,7 +102,12 @@ def description(s):
     bits = [s.get('artist') or 'Rose Marie Leo', label(s)]
     if s.get('duration'): bits.append(s['duration'])
     tail = 'Read on Odyssey of Music' if mode(s) == 'link' else 'Listen on Odyssey of Music'
-    return ' · '.join(bits) + ' · ' + tail
+    standard = ' · '.join(bits) + ' · ' + tail
+    # Superposition keeps a long collab credit in subtitle, not in the title;
+    # use that credit as the share-card description.
+    if (s.get('title') or '').strip() == 'Superposition' and (s.get('subtitle') or '').strip():
+        return s['subtitle'].strip()
+    return standard
 
 E = lambda x: html.escape(str(x or ''), quote=True)
 
