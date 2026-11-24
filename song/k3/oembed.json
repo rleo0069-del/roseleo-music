@@ -1,0 +1,15 @@
+{
+ "version": "1.0",
+ "type": "rich",
+ "title": "K3",
+ "author_name": "Rose Leo",
+ "author_url": "https://odysseyofmusic.com/",
+ "provider_name": "Odyssey of Music",
+ "provider_url": "https://odysseyofmusic.com/",
+ "thumbnail_url": "https://odysseyofmusic.com/assets/share/k3.jpg?v=3c5f84aec6",
+ "thumbnail_width": 1200,
+ "thumbnail_height": 630,
+ "width": 480,
+ "height": 152,
+ "html": "<iframe src=\"https://odysseyofmusic.com/embed/k3/\" width=\"480\" height=\"152\" title=\"K3\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
+}

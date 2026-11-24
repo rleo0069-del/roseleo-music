@@ -36,9 +36,11 @@ const asset=u=>{if(!u)return u;if(/^(https?:|data:|\/\/)/i.test(u))return u;retu
 const slugify=t=>String(t||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['\u2019]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'song';
 function addSlugs(list){const used=new Set();list.forEach(s=>{let sl=slugify(s.title),base=sl,n=2;while(used.has(sl))sl=base+'-'+n++;used.add(sl);s.slug=sl})}
 const songHash=s=>'#song-'+(s.slug||s.id);
-function songUrl(s){const path=location.pathname.replace(/index\.html$/,'').replace(/\/?$/,'/');return location.origin+path+songHash(s)}
+// Clean share URL: static page per song (built by tools/build-song-pages.py) with its own card meta; #song-<slug> hash links still work.
+const SHARE_BASE='https://odysseyofmusic.com/song/';
+function songUrl(s){return SHARE_BASE+encodeURIComponent(s.slug||s.id)+'/'}
 function findSongRef(ref){if(!ref)return-1;let r=ref;try{r=decodeURIComponent(ref)}catch(e){}return songs.findIndex(s=>s.slug===r||String(s.id)===r)}
-fetch('data/songs.json?v=20261123e').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261123f').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(w){w.innerHTML='';w.hidden=true}}
