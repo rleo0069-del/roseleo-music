@@ -1,0 +1,15 @@
+{
+ "version": "1.0",
+ "type": "video",
+ "title": "My AVI DJ  #remix",
+ "author_name": "Rose Marie Leo",
+ "author_url": "https://odysseyofmusic.com/",
+ "provider_name": "Odyssey of Music",
+ "provider_url": "https://odysseyofmusic.com/",
+ "thumbnail_url": "https://odysseyofmusic.com/assets/share/my-avi-dj-remix.jpg?v=4ac3e4f6f9",
+ "thumbnail_width": 1200,
+ "thumbnail_height": 630,
+ "width": 560,
+ "height": 315,
+ "html": "<iframe src=\"https://odysseyofmusic.com/embed/my-avi-dj-remix/\" width=\"560\" height=\"315\" title=\"My AVI DJ  #remix\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+# Rebuild song share pages whenever data/songs.json (or the builder) is part of a commit.
+# Enable once per clone:  git config core.hooksPath tools/git-hooks
+if git diff --cached --name-only | grep -qE '^(data/songs\.json|tools/build-song-pages\.py|assets/covers/)'; then
+  python3 tools/build-song-pages.py || { echo "build-song-pages failed" >&2; exit 1; }
+  git add -A song embed assets/share sitemap.xml robots.txt tools/share-manifest.json
+fi

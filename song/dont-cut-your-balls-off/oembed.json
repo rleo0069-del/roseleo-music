@@ -1,0 +1,15 @@
+{
+ "version": "1.0",
+ "type": "video",
+ "title": "Don't cut your balls off",
+ "author_name": "Rose Marie Leo",
+ "author_url": "https://odysseyofmusic.com/",
+ "provider_name": "Odyssey of Music",
+ "provider_url": "https://odysseyofmusic.com/",
+ "thumbnail_url": "https://odysseyofmusic.com/assets/share/dont-cut-your-balls-off.jpg?v=3970e3f8a1",
+ "thumbnail_width": 1200,
+ "thumbnail_height": 630,
+ "width": 560,
+ "height": 315,
+ "html": "<iframe src=\"https://odysseyofmusic.com/embed/dont-cut-your-balls-off/\" width=\"560\" height=\"315\" title=\"Don&#x27;t cut your balls off\" style=\"border:0;border-radius:14px\" allow=\"autoplay; encrypted-media; fullscreen\" loading=\"lazy\"></iframe>"
+}
