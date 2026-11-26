@@ -3,27 +3,22 @@
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
 
-  // Real waveform
-  let audioCtx, analyser, sourceNode, freqData;
-  function initAnalyser() {
-    if (audioCtx || !window.audio) return;
-    try {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      sourceNode = audioCtx.createMediaElementSource(window.audio);
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 128;
-      analyser.smoothingTimeConstant = 0.75;
-      sourceNode.connect(analyser);
-      analyser.connect(audioCtx.destination);
-      freqData = new Uint8Array(analyser.frequencyBinCount);
-      const tag = document.querySelector('.chart .tag');
-      if (tag) tag.textContent = 'LIVE';
-    } catch(e) {}
-  }
-
-  // Genre filters + Start here + Playlists
   let activeGenre = null, playlists = [], currentPlaylist = null;
   const START_IDS = ['bubbling-under-my-frontal-lobes','it-was-the-smartest-and-dumbest-of-times','k3','a-storm-of-tesla-cybercabs','code-the-coder'];
+
+  function findSongIndex(id) {
+    if (!window.songs) return -1;
+    return window.songs.findIndex(s => s.id === id || s.slug === id);
+  }
+
+  function playById(id) {
+    const i = findSongIndex(id);
+    if (i >= 0 && typeof window.load === 'function') {
+      window.load(i, true);
+      return true;
+    }
+    return false;
+  }
 
   function tagsUI() {
     const w = $('#tags');
@@ -46,7 +41,7 @@
     el.innerHTML = '<h3>Start here</h3>' + START_IDS.map(id => {
       const s = (window.songs || []).find(x => x.id === id || x.slug === id);
       if (!s) return '';
-      return `<button class="startcard" data-play-song="${esc(s.slug||s.id)}">${s.title}</button>`;
+      return `<button class="startcard" data-start="${esc(s.slug||s.id)}">${esc(s.title)}</button>`;
     }).join('');
   }
 
@@ -69,15 +64,37 @@
     if (gb) {
       activeGenre = gb.dataset.genre || null;
       tagsUI();
-      if (window.render) window.render();
+      if (typeof window.render === 'function') window.render();
+      document.querySelectorAll('#grid .card').forEach(card => {
+        const sid = card.dataset.sid || card.dataset.id;
+        const s = (window.songs || []).find(x => String(x.id) === sid || x.slug === sid);
+        if (!activeGenre || (s && (s.genre === activeGenre || s.genre2 === activeGenre))) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
       return;
     }
+
+    const sb = e.target.closest('[data-start]');
+    if (sb) {
+      playById(sb.dataset.start);
+      return;
+    }
+
     const pb = e.target.closest('[data-pl]');
     if (pb) {
       const id = pb.dataset.pl;
       currentPlaylist = id ? playlists.find(p => p.id === id) : null;
-      const p = typeof window.playable === 'function' ? window.playable() : [];
-      if (p.length && typeof window.load === 'function') window.load(p[0], true);
+      if (currentPlaylist && currentPlaylist.songs && currentPlaylist.songs.length) {
+        playById(currentPlaylist.songs[0]);
+      } else if (!currentPlaylist && typeof window.load === 'function') {
+        if (typeof window.playable === 'function') {
+          const p = window.playable();
+          if (p.length) window.load(p[0], true);
+        }
+      }
     }
   });
 
@@ -86,7 +103,6 @@
     drawPlaylists();
   }).catch(()=>{});
 
-  // Wait for songs then init
   const check = setInterval(() => {
     if (window.songs && window.songs.length) {
       clearInterval(check);
