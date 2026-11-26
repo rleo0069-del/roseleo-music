@@ -1,0 +1,17 @@
+[
+  {
+    "id": "space-drive",
+    "title": "Space Drive",
+    "songs": ["k3", "starship-universe-calls", "orbital-march-of-the-ten-thousand", "starbase-texas"]
+  },
+  {
+    "id": "late-night",
+    "title": "Late Night",
+    "songs": ["bubbling-under-my-frontal-lobes", "it-was-the-smartest-and-dumbest-of-times", "the-quiet-song"]
+  },
+  {
+    "id": "tech-anthems",
+    "title": "Tech Anthems",
+    "songs": ["a-storm-of-tesla-cybercabs", "code-the-coder", "grok-bot"]
+  }
+]
