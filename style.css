@@ -445,3 +445,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--blu
 .adlb-stage img,.adlb-stage video{display:block;max-width:100%;max-height:calc(100dvh - 56px);width:auto;height:auto;margin:0 auto;object-fit:contain;background:#000;touch-action:pan-x pan-y pinch-zoom;user-select:none}
 .adlb-stage iframe{display:block;width:min(960px,100vw - 32px);height:min(540px,calc(100dvh - 56px));border:0;border-radius:8px;margin:0 auto;background:#000}
 body.adlb-open{overflow:hidden}
+.starthere { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
+.starthere h3 { width: 100%; text-align: center; font-size: .9rem; color: var(--mu); margin: 0 0 6px; }
+.startcard { background: #0b1834; border: 1px solid var(--ln); border-radius: 12px; padding: 8px 12px; cursor: pointer; font-size: .8rem; color: var(--tx); }
+.startcard:hover { border-color: var(--acc); }
+.playlists { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; align-items: center; margin: 8px 0; font-size: .8rem; }
+.playlists button { background: #0b1834; border: 1px solid var(--ln); border-radius: 999px; padding: 4px 10px; color: var(--tx); cursor: pointer; }
+.playlists button:hover { border-color: var(--acc); background: rgba(56,189,248,.15); }
