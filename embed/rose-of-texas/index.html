@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rose of Texas · Odyssey of Music player</title><meta name="robots" content="noindex"><link rel="canonical" href="https://odysseyofmusic.com/song/rose-of-texas/"><style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;color:#fff;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+.e{height:100%;display:flex;align-items:center;gap:14px;padding:12px;border:1px solid #d4af37;border-radius:14px;background:#000}
+.e img{height:100%;max-height:128px;aspect-ratio:1;object-fit:cover;border-radius:10px;flex:none}
+.m{flex:1;min-width:0}
+.t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:1.35rem;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.a{color:#bdbdbd;font-size:.85rem;margin:2px 0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r{display:flex;align-items:center;gap:10px}
+.pp{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:#d4af37;color:#000;font-size:1.2rem;cursor:pointer}
+.r input{flex:1;min-width:0;accent-color:#d4af37}
+.tm{font:.72rem ui-monospace,monospace;color:#bdbdbd;white-space:nowrap}
+.o{display:inline-block;margin-top:6px;font:.7rem ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#d4af37;text-decoration:none}
+.yt{position:fixed;inset:0;width:100%;height:100%;border:0}
+</style></head><body><div class="e"><img src="https://odysseyofmusic.com/assets/covers/rose-of-texas.jpg" alt=""><div class="m"><div class="t" title="Rose of Texas">Rose of Texas</div><div class="a">Rose Marie Leo · Romantic</div><audio id="au" preload="none" src="https://odysseyofmusic.com/assets/audio/rose-of-texas.mp3"></audio><div class="r"><button class="pp" id="pp" type="button" aria-label="Play">&#9654;</button><input id="sk" type="range" min="0" max="1000" value="0" aria-label="Seek"><span class="tm" id="tm">0:00 / 7:09</span></div><a class="o" href="https://odysseyofmusic.com/song/rose-of-texas/" target="_blank" rel="noopener">Odyssey of Music &#8599;</a></div></div><script>
+(function(){var a=document.getElementById('au'),b=document.getElementById('pp'),sk=document.getElementById('sk'),tm=document.getElementById('tm');
+function f(t){return isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00'}
+function ui(){var on=!a.paused;b.textContent=on?'\u23F8':'\u25B6';b.setAttribute('aria-label',on?'Pause':'Play')}
+b.addEventListener('click',function(){a.paused?a.play():a.pause()});['play','pause','ended'].forEach(function(e){a.addEventListener(e,ui)});
+a.addEventListener('timeupdate',function(){tm.textContent=f(a.currentTime)+' / '+f(a.duration||0);if(a.duration)sk.value=a.currentTime/a.duration*1000});
+sk.addEventListener('input',function(){if(a.duration)a.currentTime=sk.value/1000*a.duration});})();
+</script></body></html>
