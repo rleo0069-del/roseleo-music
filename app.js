@@ -15,7 +15,7 @@ function dr(t){raf=0;const dt=lt?Math.min(t-lt,50):16;lt=t;cx.clearRect(0,0,cv.w
 document.addEventListener('visibilitychange',()=>{lt=0;if(!document.hidden&&!still&&!raf)raf=requestAnimationFrame(dr)});
 addEventListener('resize',rs);rs();if(!still)raf=requestAnimationFrame(dr);
 // state
-let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer;
+let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer,ignoreYTEnd=false;
 const logoAudio=$('#logoAudio'),logoMuteBtn=$('#logoMute');
 let logoSongHold=false,logoAdHold=false;
 const logoMuted=()=>{try{return localStorage.getItem('oom-logo-muted')==='1'}catch(e){return false}};
@@ -40,7 +40,7 @@ const songHash=s=>'#song-'+(s.slug||s.id);
 const SHARE_BASE='https://odysseyofmusic.com/song/';
 function songUrl(s){return SHARE_BASE+encodeURIComponent(s.slug||s.id)+'/'}
 function findSongRef(ref){if(!ref)return-1;let r=ref;try{r=decodeURIComponent(ref)}catch(e){}return songs.findIndex(s=>s.slug===r||String(s.id)===r)}
-fetch('data/songs.json?v=20261124b').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261125a').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(w){w.innerHTML='';w.hidden=true}}
@@ -74,7 +74,7 @@ SECS.forEach(([,g])=>$(g).addEventListener('click',e=>{const p=e.target.closest(
  if(p){const s=view[+p.dataset.play],i=songs.indexOf(s);i===cur?toggle():load(i,true)}
  if(l){const d=$('#ly'+l.dataset.ly),o=d.hidden;d.hidden=!o;l.setAttribute('aria-expanded',o)}}));
 function playable(){return songs.map((s,i)=>i).sort((a,b)=>rank(songs[a])-rank(songs[b])||songs[a].title.localeCompare(songs[b].title,undefined,{sensitivity:'base'})||a-b).filter(i=>!isAd(songs[i])&&mode(songs[i])!=='link')}
-function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo)yt.stopVideo();clearInterval(ytTimer)}
+function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo){ignoreYTEnd=true;yt.stopVideo()}clearInterval(ytTimer)}
 function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,go);$('#pTitle').innerHTML=titleHTML(s);const sub=$('#pSub');if(sub){sub.textContent=s.subtitle||'';sub.hidden=!s.subtitle}$('#pArtist').textContent=s.artist||'';
  const y=ytId(s.youtube),img=asset(s.cover)||(y?`https://i.ytimg.com/vi/${y}/default.jpg`:'');const pc=$('#pCover');pc.hidden=!img;if(img)pc.src=img;
  $('#ytWrap').classList.toggle('on',mode(s)==='youtube');$('#player').classList.remove('closed');const pa=$('#pArt');if(pa){const sh=mode(s)==='audio'&&!!img;pa.hidden=!sh;if(sh)pa.src=img}
@@ -83,7 +83,7 @@ function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,g
  render();setBtn(go)}
 function withYT(cb){if(ytReady)return cb();window._ytq=cb;if(!window.YT){const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}}
 window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:240,height:136,playerVars:{playsinline:1,controls:0},events:{onReady:()=>{ytReady=true;window._ytq&&window._ytq()},
- onStateChange:e=>{setBtn(e.data===1);if(e.data===0){setBtn(false);logoReleaseSong()}}}})};
+ onStateChange:e=>{setBtn(e.data===1);if(e.data===1)ignoreYTEnd=false;if(e.data===0){if(ignoreYTEnd){ignoreYTEnd=false;return}step(1)}}}})};
 function ytTick(){if(!ytReady||mode(songs[cur])!=='youtube')return;const d=yt.getDuration(),t=yt.getCurrentTime();$('#cur').textContent=fmt(t);$('#dur').textContent=fmt(d);if(d)$('#seek').value=t/d*100}
 function isPlaying(){if(cur<0)return false;return mode(songs[cur])==='audio'?!audio.paused:(ytReady&&yt.getPlayerState&&yt.getPlayerState()===1)}
 function toggle(){if(cur<0){const p=playable();if(p.length)load(p[0],true);return}
@@ -93,7 +93,7 @@ function setBtn(on){dashPlay(on);$('#play').textContent=on?'⏸':'▶';$('#play'
  document.querySelectorAll('[data-play-song]').forEach(b=>{const i=findSongRef(b.getAttribute('data-play-song'));b.textContent=(i===cur&&on)?'Pause':'Play'})}
 $('#play').onclick=toggle;$('#prev').onclick=()=>step(-1);$('#next').onclick=()=>step(1);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-play-song]');if(!b)return;e.preventDefault();const i=findSongRef(b.getAttribute('data-play-song'));if(i<0)return;i===cur?toggle():load(i,true)});
-audio.onplay=()=>setBtn(true);audio.onpause=()=>setBtn(false);audio.onended=()=>{setBtn(false);logoReleaseSong()};
+audio.onplay=()=>setBtn(true);audio.onpause=()=>setBtn(false);audio.onended=()=>step(1);
 audio.ontimeupdate=()=>{$('#cur').textContent=fmt(audio.currentTime);$('#dur').textContent=fmt(audio.duration);if(audio.duration)$('#seek').value=audio.currentTime/audio.duration*100};
 $('#seek').oninput=e=>{if(cur<0)return;const f=e.target.value/100;if(mode(songs[cur])==='audio'){if(audio.duration)audio.currentTime=f*audio.duration}else if(ytReady)yt.seekTo(f*yt.getDuration(),true)};
 $('#vol').oninput=e=>{audio.volume=+e.target.value;if(logoAudio)logoAudio.volume=+e.target.value;if(ytReady)yt.setVolume(e.target.value*100)};
