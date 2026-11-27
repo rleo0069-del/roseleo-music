@@ -15,7 +15,7 @@ function dr(t){raf=0;const dt=lt?Math.min(t-lt,50):16;lt=t;cx.clearRect(0,0,cv.w
 document.addEventListener('visibilitychange',()=>{lt=0;if(!document.hidden&&!still&&!raf)raf=requestAnimationFrame(dr)});
 addEventListener('resize',rs);rs();if(!still)raf=requestAnimationFrame(dr);
 // state
-let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer;
+let songs=[],view=[],cur=-1,genre=null,yt=null,ytReady=false,ytTimer,ignoreYTEnd=false;
 const logoAudio=$('#logoAudio'),logoMuteBtn=$('#logoMute');
 let logoSongHold=false,logoAdHold=false;
 const logoMuted=()=>{try{return localStorage.getItem('oom-logo-muted')==='1'}catch(e){return false}};
@@ -36,10 +36,11 @@ const asset=u=>{if(!u)return u;if(/^(https?:|data:|\/\/)/i.test(u))return u;retu
 const slugify=t=>String(t||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['\u2019]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'song';
 function addSlugs(list){const used=new Set();list.forEach(s=>{let sl=(s.slug&&String(s.slug).trim())||slugify(s.title),base=sl,n=2;while(used.has(sl))sl=base+'-'+n++;used.add(sl);s.slug=sl})}
 const songHash=s=>'#song-'+(s.slug||s.id);
+// Clean share URL: static page per song (built by tools/build-song-pages.py) with its own card meta; #song-<slug> hash links still work.
 const SHARE_BASE='https://odysseyofmusic.com/song/';
 function songUrl(s){return SHARE_BASE+encodeURIComponent(s.slug||s.id)+'/'}
 function findSongRef(ref){if(!ref)return-1;let r=ref;try{r=decodeURIComponent(ref)}catch(e){}return songs.findIndex(s=>s.slug===r||String(s.id)===r)}
-fetch('data/songs.json?v=20261124b').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
+fetch('data/songs.json?v=20261125a').then(r=>r.json()).then(d=>{songs=d.map(s=>({...s,tags:s.tags||(s.mood?[].concat(s.mood):[])}));addSlugs(songs);tagsUI();render();sideUI();chartBind();goHash();dashInit();favInit();sitesInit()}).catch(e=>{$('#grid').textContent='Could not load songs.';console.error(e)});
 const GENRES=['Romantic','Space theme','Techno','Slop core','Tech anthems','Free ads','More'];
 const GCOL={Romantic:'#f472b6','Space theme':'#7dd3fc',Techno:'#a78bfa','Slop core':'#fb923c','Tech anthems':'#34d399','Free ads':'#fbbf24',More:'#94a3b8'};
 function tagsUI(){const w=$('#tags');if(w){w.innerHTML='';w.hidden=true}}
@@ -73,7 +74,7 @@ SECS.forEach(([,g])=>$(g).addEventListener('click',e=>{const p=e.target.closest(
  if(p){const s=view[+p.dataset.play],i=songs.indexOf(s);i===cur?toggle():load(i,true)}
  if(l){const d=$('#ly'+l.dataset.ly),o=d.hidden;d.hidden=!o;l.setAttribute('aria-expanded',o)}}));
 function playable(){return songs.map((s,i)=>i).sort((a,b)=>rank(songs[a])-rank(songs[b])||songs[a].title.localeCompare(songs[b].title,undefined,{sensitivity:'base'})||a-b).filter(i=>!isAd(songs[i])&&mode(songs[i])!=='link')}
-function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo)yt.stopVideo();clearInterval(ytTimer)}
+function stopAll(){audio.pause();if(yt&&ytReady&&yt.stopVideo){ignoreYTEnd=true;yt.stopVideo()}clearInterval(ytTimer)}
 function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,go);$('#pTitle').innerHTML=titleHTML(s);const sub=$('#pSub');if(sub){sub.textContent=s.subtitle||'';sub.hidden=!s.subtitle}$('#pArtist').textContent=s.artist||'';
  const y=ytId(s.youtube),img=asset(s.cover)||(y?`https://i.ytimg.com/vi/${y}/default.jpg`:'');const pc=$('#pCover');pc.hidden=!img;if(img)pc.src=img;
  $('#ytWrap').classList.toggle('on',mode(s)==='youtube');$('#player').classList.remove('closed');const pa=$('#pArt');if(pa){const sh=mode(s)==='audio'&&!!img;pa.hidden=!sh;if(sh)pa.src=img}
@@ -82,7 +83,7 @@ function load(i,go){stopAll();cur=i;chartActive();const s=songs[i];dashTrack(s,g
  render();setBtn(go)}
 function withYT(cb){if(ytReady)return cb();window._ytq=cb;if(!window.YT){const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}}
 window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:240,height:136,playerVars:{playsinline:1,controls:0},events:{onReady:()=>{ytReady=true;window._ytq&&window._ytq()},
- onStateChange:e=>{setBtn(e.data===1);if(e.data===0){setBtn(false);logoReleaseSong()}}}})};
+ onStateChange:e=>{setBtn(e.data===1);if(e.data===1)ignoreYTEnd=false;if(e.data===0){if(ignoreYTEnd){ignoreYTEnd=false;return}step(1)}}}})};
 function ytTick(){if(!ytReady||mode(songs[cur])!=='youtube')return;const d=yt.getDuration(),t=yt.getCurrentTime();$('#cur').textContent=fmt(t);$('#dur').textContent=fmt(d);if(d)$('#seek').value=t/d*100}
 function isPlaying(){if(cur<0)return false;return mode(songs[cur])==='audio'?!audio.paused:(ytReady&&yt.getPlayerState&&yt.getPlayerState()===1)}
 function toggle(){if(cur<0){const p=playable();if(p.length)load(p[0],true);return}
@@ -92,14 +93,16 @@ function setBtn(on){dashPlay(on);$('#play').textContent=on?'⏸':'▶';$('#play'
  document.querySelectorAll('[data-play-song]').forEach(b=>{const i=findSongRef(b.getAttribute('data-play-song'));b.textContent=(i===cur&&on)?'Pause':'Play'})}
 $('#play').onclick=toggle;$('#prev').onclick=()=>step(-1);$('#next').onclick=()=>step(1);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-play-song]');if(!b)return;e.preventDefault();const i=findSongRef(b.getAttribute('data-play-song'));if(i<0)return;i===cur?toggle():load(i,true)});
-audio.onplay=()=>setBtn(true);audio.onpause=()=>setBtn(false);audio.onended=()=>{setBtn(false);logoReleaseSong()};
+audio.onplay=()=>setBtn(true);audio.onpause=()=>setBtn(false);audio.onended=()=>step(1);
 audio.ontimeupdate=()=>{$('#cur').textContent=fmt(audio.currentTime);$('#dur').textContent=fmt(audio.duration);if(audio.duration)$('#seek').value=audio.currentTime/audio.duration*100};
 $('#seek').oninput=e=>{if(cur<0)return;const f=e.target.value/100;if(mode(songs[cur])==='audio'){if(audio.duration)audio.currentTime=f*audio.duration}else if(ytReady)yt.seekTo(f*yt.getDuration(),true)};
 $('#vol').oninput=e=>{audio.volume=+e.target.value;if(logoAudio)logoAudio.volume=+e.target.value;if(ytReady)yt.setVolume(e.target.value*100)};
 document.addEventListener('keydown',e=>{if(e.code==='Space'&&!/INPUT|BUTTON|A/.test(e.target.tagName)){e.preventDefault();toggle()}});
 
+// top: date + news
 $('#today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 fetch('data/news.json').then(r=>r.json()).then(n=>{$('#news').innerHTML=n.map(x=>`<li>${x.link?`<a href="${esc(x.link)}"${/^https?:/.test(x.link)?' target="_blank" rel="noopener"':''}>${esc(x.text)}</a>`:esc(x.text)}</li>`).join('')}).catch(()=>{$('.news').hidden=true});
+// sidebar
 
 function chartBind(){const root=$('#musicChart');if(!root||root.dataset.bound)return;root.dataset.bound='1';
  root.addEventListener('click',e=>{const li=e.target.closest('.rk[data-sid]');if(!li||!root.contains(li))return;const i=songs.findIndex(s=>String(s.id)===li.dataset.sid);if(i<0)return;if(mode(songs[i])==='link')return;i===cur?toggle():load(i,true)});
@@ -117,6 +120,7 @@ $('#sFilter').addEventListener('input',e=>{const q=e.target.value.trim().toLower
 $('#sList').addEventListener('click',e=>{const l=e.target.closest('[data-si]');if(!l)return;e.preventDefault();const i=+l.dataset.si,s=songs[i];if(s)history.pushState(null,'',songHash(s));focusSong(i,false);
  if(matchMedia('(max-width:900px)').matches){$('#sideB').classList.remove('open');$('#sideT').setAttribute('aria-expanded','false')}});
 $('#sideT').onclick=()=>{const o=$('#sideB').classList.toggle('open');$('#sideT').setAttribute('aria-expanded',o)};
+// dashboard
 const LS='rl_plays';let plays=0,playing=false,energy=0;try{plays=+localStorage.getItem(LS)||0}catch(e){}
 function dashInit(){const cat=catalogSongs();$('#songN').textContent=cat.length;$('#secTot').textContent=cat.length;
  const n={music:0,books:0,children:0,games:0};cat.forEach(s=>n[secOf(s)]++);
@@ -152,6 +156,7 @@ function viz(t){vraf=0;const w=vc.width,h=vc.height;if(!w||!h){vsize()}
 
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&playing&&!vraf)vraf=requestAnimationFrame(viz)});
 vraf=requestAnimationFrame(viz);
+
 
 const SITES=[{title:'Bored.com',url:'https://www.bored.com/',blurb:'A collection of fun and interesting websites to explore.'}];
 function sitesInit(){
@@ -208,6 +213,7 @@ function favInit(){loadFavs();drawFavs();const box=$('#favs');if(!box)return;
 document.getElementById('pClose')&&document.getElementById('pClose').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();try{stopAll();setBtn(false)}catch(_){}document.getElementById('player').classList.add('closed');logoReleaseSong()});
 window.oomLogoAd=on=>{logoAdHold=!!on;on?logoPause():logoTryPlay()};
 })();
+
 
 (()=>{const P=document.getElementById('player'),g=P&&P.querySelector('.pgrip');if(!g)return;let sx,sy,ox,oy,d=false;
 const fit=()=>{const w=Math.max(160,Math.min(560,Math.min(P.clientWidth*.3,(P.clientHeight-40)/.5625)));P.style.setProperty('--ytw',w+'px')};

@@ -3,8 +3,31 @@
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
 
-  let playlists = [];
+  let activeGenre = null, playlists = [], currentPlaylist = null;
   const START_IDS = ['bubbling-under-my-frontal-lobes','it-was-the-smartest-and-dumbest-of-times','k3','a-storm-of-tesla-cybercabs','code-the-coder'];
+
+  function findSongIndex(id) {
+    if (!window.songs) return -1;
+    return window.songs.findIndex(s => s.id === id || s.slug === id);
+  }
+
+  function playById(id) {
+    const i = findSongIndex(id);
+    if (i >= 0 && typeof window.load === 'function') {
+      window.load(i, true);
+      return true;
+    }
+    return false;
+  }
+
+  function tagsUI() {
+    const w = $('#tags');
+    if (!w || !window.songs) return;
+    w.hidden = false;
+    const genres = [...new Set(window.songs.map(s => s.genre).filter(Boolean))].sort();
+    w.innerHTML = `<button data-genre="" aria-pressed="${!activeGenre}">All</button>` +
+      genres.map(g => `<button data-genre="${esc(g)}" aria-pressed="${activeGenre===g}">${esc(g)}</button>`).join('');
+  }
 
   function drawStartHere() {
     let el = $('#startHere');
@@ -15,19 +38,11 @@
       const controls = document.querySelector('.controls');
       if (controls) controls.parentNode.insertBefore(el, controls);
     }
-    // Wait until songs exist so we can resolve titles
-    const tryDraw = () => {
-      if (!window.songs && document.querySelectorAll('#grid .card').length === 0) {
-        setTimeout(tryDraw, 200);
-        return;
-      }
-      el.innerHTML = '<h3>Start here</h3>' + START_IDS.map(id => {
-        const card = document.querySelector(`[data-slug="${id}"], [data-sid="${id}"]`);
-        const title = card ? (card.querySelector('h3')?.textContent || id) : id;
-        return `<button class="startcard" data-play-song="${esc(id)}">${esc(title)}</button>`;
-      }).join('');
-    };
-    tryDraw();
+    el.innerHTML = '<h3>Start here</h3>' + START_IDS.map(id => {
+      const s = (window.songs || []).find(x => x.id === id || x.slug === id);
+      if (!s) return '';
+      return `<button class="startcard" data-start="${esc(s.slug||s.id)}">${esc(s.title)}</button>`;
+    }).join('');
   }
 
   function drawPlaylists() {
@@ -45,18 +60,46 @@
   }
 
   document.addEventListener('click', e => {
+    // Genre
+    const gb = e.target.closest('#tags [data-genre]');
+    if (gb) {
+      activeGenre = gb.dataset.genre || null;
+      tagsUI();
+      if (typeof window.render === 'function') window.render();
+      // simple client-side hide
+      document.querySelectorAll('#grid .card').forEach(card => {
+        const sid = card.dataset.sid || card.dataset.id;
+        const s = (window.songs || []).find(x => String(x.id) === sid || x.slug === sid);
+        if (!activeGenre || (s && (s.genre === activeGenre || s.genre2 === activeGenre))) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      return;
+    }
+
+    // Start here
+    const sb = e.target.closest('[data-start]');
+    if (sb) {
+      playById(sb.dataset.start);
+      return;
+    }
+
+    // Playlists
     const pb = e.target.closest('[data-pl]');
-    if (!pb) return;
-    const id = pb.dataset.pl;
-    const pl = id ? playlists.find(p => p.id === id) : null;
-    if (pl && pl.songs && pl.songs.length) {
-      // Create a temporary button the existing player already understands
-      const tmp = document.createElement('button');
-      tmp.setAttribute('data-play-song', pl.songs[0]);
-      tmp.style.display = 'none';
-      document.body.appendChild(tmp);
-      tmp.click();
-      tmp.remove();
+    if (pb) {
+      const id = pb.dataset.pl;
+      currentPlaylist = id ? playlists.find(p => p.id === id) : null;
+      if (currentPlaylist && currentPlaylist.songs && currentPlaylist.songs.length) {
+        playById(currentPlaylist.songs[0]);
+      } else if (!currentPlaylist && typeof window.load === 'function') {
+        // back to catalog — just play first playable if any
+        if (typeof window.playable === 'function') {
+          const p = window.playable();
+          if (p.length) window.load(p[0], true);
+        }
+      }
     }
   });
 
@@ -65,6 +108,11 @@
     drawPlaylists();
   }).catch(()=>{});
 
-  // Draw start-here after a short delay so songs are rendered
-  setTimeout(drawStartHere, 800);
+  const check = setInterval(() => {
+    if (window.songs && window.songs.length) {
+      clearInterval(check);
+      tagsUI();
+      drawStartHere();
+    }
+  }, 300);
 })();
